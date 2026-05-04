@@ -1,6 +1,9 @@
 import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
 
 import appCss from "../styles.css?url";
+import { SiteHeader } from "@/components/site-header";
+import { SiteFooter } from "@/components/site-footer";
+import { FloatingContact } from "@/components/floating-contact";
 
 function NotFoundComponent() {
   return (
@@ -29,19 +32,27 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "Peptide Empire — Premium Research Peptides" },
+      { name: "description", content: "Pharmaceutical-grade research peptides — Retatrutide, Tirzepatide, Semaglutide, GHK-Cu, MOTS-C and more. Discreet worldwide shipping." },
+      { name: "author", content: "Peptide Empire" },
+      { property: "og:title", content: "Peptide Empire — Premium Research Peptides" },
+      { property: "og:description", content: "Pharmaceutical-grade research peptides with verified purity. Order direct via WhatsApp, Telegram or Email." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:site", content: "@PeptideEmpire" },
     ],
     links: [
       {
         rel: "stylesheet",
         href: appCss,
+      },
+      {
+        rel: "preconnect",
+        href: "https://fonts.googleapis.com",
+      },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap",
       },
     ],
   }),
@@ -65,5 +76,14 @@ function RootShell({ children }: { children: React.ReactNode }) {
 }
 
 function RootComponent() {
-  return <Outlet />;
+  return (
+    <div className="flex min-h-screen flex-col">
+      <SiteHeader />
+      <main className="flex-1">
+        <Outlet />
+      </main>
+      <SiteFooter />
+      <FloatingContact />
+    </div>
+  );
 }
