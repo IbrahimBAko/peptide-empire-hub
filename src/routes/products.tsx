@@ -2,6 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { products } from "@/lib/products";
 import { ContactButtons } from "@/components/contact-buttons";
 import { Check } from "lucide-react";
+import { AddToCart } from "@/components/add-to-cart";
+import { CoaViewer, LabVerifiedBadge } from "@/components/coa-viewer";
 
 export const Route = createFileRoute("/products")({
   head: () => ({
@@ -45,6 +47,11 @@ function ProductsPage() {
               <span className="absolute top-4 left-4 text-[10px] uppercase tracking-widest text-gold border border-gold/40 bg-background/60 backdrop-blur px-2 py-1 rounded">
                 {p.category}
               </span>
+              {p.coa && (
+                <span className="absolute top-4 right-4">
+                  <LabVerifiedBadge />
+                </span>
+              )}
             </div>
             <div className="flex flex-1 flex-col p-6">
               <h2 className="font-display text-2xl">{p.name}</h2>
@@ -60,31 +67,31 @@ function ProductsPage() {
               <div className="mt-5 flex items-center gap-4 text-xs text-muted-foreground">
                 <span>Purity {p.purity}</span>
               </div>
-              {p.variants && p.variants.length > 0 && (
-                <div className="mt-5 rounded-lg border border-border/60 bg-background/40 p-3">
-                  <p className="text-[11px] uppercase tracking-widest text-muted-foreground mb-2">Sizes & Pricing</p>
-                  <div className="grid grid-cols-2 gap-1.5">
-                    {p.variants.map((v) => (
-                      <div key={v.size} className="flex items-center justify-between text-sm px-2 py-1 rounded hover:bg-card/60">
-                        <span className="text-muted-foreground">{v.size}</span>
-                        <span className="text-gold font-medium">${v.price}</span>
-                      </div>
-                    ))}
-                  </div>
+              {p.coa && (
+                <div className="mt-4 rounded-lg border border-emerald-400/20 bg-emerald-400/5 p-3">
+                  <p className="text-[11px] uppercase tracking-widest text-emerald-300 mb-2">Certificate of Analysis</p>
+                  <CoaViewer coaUrl={p.coa} productName={p.name} />
                 </div>
               )}
-              <div className="mt-6 pt-5 border-t border-border">
-                <p className="text-[11px] uppercase tracking-widest text-muted-foreground mb-3">
-                  {p.inquireOnly ? "Inquire via" : "Order via"}
-                </p>
-                <ContactButtons
-                  size="sm"
-                  message={
-                    p.inquireOnly
-                      ? `Hello, I'd like pricing and availability for ${p.name}.`
-                      : `Hello, I'd like to order ${p.name}. Please confirm available sizes and total.`
-                  }
-                />
+              <div className="mt-5 pt-5 border-t border-border">
+                <AddToCart product={p} />
+              </div>
+              <div className="mt-4">
+                <details className="group">
+                  <summary className="cursor-pointer text-[11px] uppercase tracking-widest text-muted-foreground hover:text-gold transition list-none">
+                    Or contact directly →
+                  </summary>
+                  <div className="mt-3">
+                    <ContactButtons
+                      size="sm"
+                      message={
+                        p.inquireOnly
+                          ? `Hello, I'd like pricing and availability for ${p.name}.`
+                          : `Hello, I'd like to order ${p.name}. Please confirm available sizes and total.`
+                      }
+                    />
+                  </div>
+                </details>
               </div>
             </div>
           </article>
