@@ -115,8 +115,12 @@ function Index() {
               <p className="mt-2 text-sm text-muted-foreground">{p.tagline}</p>
               <div className="mt-4 flex items-center gap-4 text-xs text-muted-foreground">
                 <span>Purity {p.purity}</span>
-                <span className="h-1 w-1 rounded-full bg-border" />
-                <span>{p.size}</span>
+                {p.variants && p.variants.length > 0 && (
+                  <>
+                    <span className="h-1 w-1 rounded-full bg-border" />
+                    <span className="text-gold">From ${Math.min(...p.variants.map(v => v.price))}</span>
+                  </>
+                )}
               </div>
               <Link
                 to="/products"
