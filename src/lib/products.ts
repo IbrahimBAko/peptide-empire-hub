@@ -189,11 +189,25 @@ const inquireCatalog: { name: string; category: string; tagline: string }[] = [
   { name: "GLP-1", category: "Metabolic", tagline: "Glucagon-like peptide-1" },
   { name: "Bacteriostatic Water", category: "Reconstitution", tagline: "0.9% benzyl alcohol diluent" },
   { name: "Acetic Acid", category: "Reconstitution", tagline: "Reconstitution solvent" },
+  { name: "Topilutamide", category: "Aesthetic", tagline: "Topical anti-androgen (Fluridil)" },
+  { name: "RU-58841", category: "Aesthetic", tagline: "Non-steroidal topical anti-androgen" },
+  { name: "PE-22-28", category: "Cognitive", tagline: "TREK-1 antagonist research peptide" },
+  { name: "AOD-9604", category: "Metabolic", tagline: "Lipolytic HGH fragment 176-191" },
 ];
 
+// Map of product slug -> COA file path (in /public)
+const coaMap: Record<string, string> = {
+  "aod-9604": "/coa/aod-9604-coa.png",
+  "topilutamide": "/coa/topilutamide-coa.png",
+  "ru-58841": "/coa/ru-58841-coa.png",
+  "pe-22-28": "/coa/pe-22-28-coa.png",
+};
+
 for (const item of inquireCatalog) {
+  const slug = item.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+  if (products.some((p) => p.slug === slug)) continue;
   products.push({
-    slug: item.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, ""),
+    slug,
     name: item.name,
     category: item.category,
     tagline: item.tagline,
@@ -202,5 +216,6 @@ for (const item of inquireCatalog) {
     purity: "≥ 99.0%",
     image: vialImg,
     inquireOnly: true,
+    coa: coaMap[slug],
   });
 }
