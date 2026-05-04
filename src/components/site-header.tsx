@@ -1,18 +1,17 @@
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { Menu, X, ShoppingCart } from "lucide-react";
-import { useCart } from "@/lib/cart";
+import { Menu, X, MessageCircle } from "lucide-react";
 
 const links = [
   { to: "/", label: "Home" },
   { to: "/products", label: "Products" },
+  { to: "/wholesale", label: "Wholesale" },
   { to: "/about", label: "About" },
   { to: "/contact", label: "Contact" },
 ] as const;
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
-  const { count } = useCart();
   return (
     <header className="sticky top-0 z-40 w-full border-b border-border/60 bg-background/80 backdrop-blur-xl">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
@@ -38,27 +37,16 @@ export function SiteHeader() {
             </Link>
           ))}
           <Link
-            to="/cart"
-            className="relative inline-flex items-center gap-2 rounded-md border border-gold/40 px-3 py-1.5 text-xs uppercase tracking-widest text-gold hover:bg-gold/10 transition"
-            activeProps={{ className: "bg-gold/10" }}
+            to="/contact"
+            className="inline-flex items-center gap-2 rounded-md bg-gradient-to-r from-gold to-gold-bright px-4 py-1.5 text-xs uppercase tracking-widest text-primary-foreground hover:brightness-110 transition shadow-[var(--shadow-gold)]"
           >
-            <ShoppingCart size={14} /> Cart
-            {count > 0 && (
-              <span className="ml-1 inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-gold px-1.5 text-[10px] font-bold text-primary-foreground">
-                {count}
-              </span>
-            )}
+            <MessageCircle size={14} /> Inquire
           </Link>
         </nav>
 
         <div className="md:hidden flex items-center gap-3">
-          <Link to="/cart" className="relative text-gold" aria-label="Cart">
-            <ShoppingCart size={22} />
-            {count > 0 && (
-              <span className="absolute -top-2 -right-2 inline-flex h-4 min-w-4 items-center justify-center rounded-full bg-gold px-1 text-[10px] font-bold text-primary-foreground">
-                {count}
-              </span>
-            )}
+          <Link to="/contact" className="text-gold" aria-label="Contact">
+            <MessageCircle size={22} />
           </Link>
           <button
             onClick={() => setOpen((v) => !v)}
@@ -83,13 +71,6 @@ export function SiteHeader() {
               {l.label}
             </Link>
           ))}
-          <Link
-            to="/cart"
-            onClick={() => setOpen(false)}
-            className="text-sm uppercase tracking-widest text-gold"
-          >
-            Cart ({count})
-          </Link>
         </nav>
       )}
     </header>
