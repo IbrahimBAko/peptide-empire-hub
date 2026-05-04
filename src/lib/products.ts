@@ -19,6 +19,7 @@ export type Product = {
   image: string;
   variants?: Variant[];
   inquireOnly?: boolean;
+  coa?: string; // public path to COA image
 };
 
 export const products: Product[] = [
