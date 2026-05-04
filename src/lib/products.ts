@@ -1,3 +1,10 @@
+import retatrutideImg from "@/assets/products/retatrutide.jpg";
+import tirzepatideImg from "@/assets/products/tirzepatide.jpg";
+import semaglutideImg from "@/assets/products/semaglutide.jpg";
+import ghkCuImg from "@/assets/products/ghk-cu.jpg";
+import glowBlendImg from "@/assets/products/glow-blend.jpg";
+import motsCImg from "@/assets/products/mots-c.jpg";
+
 export type Product = {
   slug: string;
   name: string;
@@ -7,6 +14,7 @@ export type Product = {
   highlights: string[];
   purity: string;
   size: string;
+  image: string;
 };
 
 export const products: Product[] = [
@@ -20,6 +28,7 @@ export const products: Product[] = [
     highlights: ["Tri-agonist GLP-1/GIP/GCG", "Lyophilized powder", "Third-party HPLC tested"],
     purity: "≥ 99.0%",
     size: "10 mg / vial",
+    image: retatrutideImg,
   },
   {
     slug: "tirzepatide",
@@ -31,6 +40,7 @@ export const products: Product[] = [
     highlights: ["Dual GIP/GLP-1 action", "High-potency formulation", "COA on request"],
     purity: "≥ 99.0%",
     size: "10 mg / vial",
+    image: tirzepatideImg,
   },
   {
     slug: "semaglutide",
@@ -42,6 +52,7 @@ export const products: Product[] = [
     highlights: ["Long half-life", "Lyophilized stability", "Independently verified"],
     purity: "≥ 99.0%",
     size: "5 mg / vial",
+    image: semaglutideImg,
   },
   {
     slug: "ghk-cu",
@@ -53,6 +64,7 @@ export const products: Product[] = [
     highlights: ["Copper-bound tripeptide", "Cosmetic & wound research", "Premium purity"],
     purity: "≥ 99.5%",
     size: "100 mg / vial",
+    image: ghkCuImg,
   },
   {
     slug: "glow-blend",
@@ -64,6 +76,7 @@ export const products: Product[] = [
     highlights: ["Synergistic blend", "Empire-exclusive formula", "Lab tested"],
     purity: "Pharma-grade",
     size: "Custom blend vial",
+    image: glowBlendImg,
   },
   {
     slug: "mots-c",
@@ -75,5 +88,6 @@ export const products: Product[] = [
     highlights: ["Mitochondrial origin", "Metabolic research", "Premium synthesis"],
     purity: "≥ 99.0%",
     size: "10 mg / vial",
+    image: motsCImg,
   },
 ];

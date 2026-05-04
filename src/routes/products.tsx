@@ -1,5 +1,4 @@
 import { createFileRoute } from "@tanstack/react-router";
-import vialImg from "@/assets/vial.jpg";
 import { products } from "@/lib/products";
 import { ContactButtons } from "@/components/contact-buttons";
 import { Check } from "lucide-react";
@@ -35,14 +34,14 @@ function ProductsPage() {
           >
             <div className="relative h-56 overflow-hidden bg-card">
               <img
-                src={vialImg}
-                alt={`${p.name} research peptide vial`}
+                src={p.image}
+                alt={`${p.name} research peptide vial — Peptide Empire premium packaging`}
                 width={1024}
                 height={1024}
                 loading="lazy"
-                className="h-full w-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700"
+                className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-700"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-card via-card/30 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-card/80 via-card/10 to-transparent" />
               <span className="absolute top-4 left-4 text-[10px] uppercase tracking-widest text-gold border border-gold/40 bg-background/60 backdrop-blur px-2 py-1 rounded">
                 {p.category}
               </span>
