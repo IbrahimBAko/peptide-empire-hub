@@ -59,14 +59,31 @@ function ProductsPage() {
               </ul>
               <div className="mt-5 flex items-center gap-4 text-xs text-muted-foreground">
                 <span>Purity {p.purity}</span>
-                <span className="h-1 w-1 rounded-full bg-border" />
-                <span>{p.size}</span>
               </div>
+              {p.variants && p.variants.length > 0 && (
+                <div className="mt-5 rounded-lg border border-border/60 bg-background/40 p-3">
+                  <p className="text-[11px] uppercase tracking-widest text-muted-foreground mb-2">Sizes & Pricing</p>
+                  <div className="grid grid-cols-2 gap-1.5">
+                    {p.variants.map((v) => (
+                      <div key={v.size} className="flex items-center justify-between text-sm px-2 py-1 rounded hover:bg-card/60">
+                        <span className="text-muted-foreground">{v.size}</span>
+                        <span className="text-gold font-medium">${v.price}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
               <div className="mt-6 pt-5 border-t border-border">
-                <p className="text-[11px] uppercase tracking-widest text-muted-foreground mb-3">Order via</p>
+                <p className="text-[11px] uppercase tracking-widest text-muted-foreground mb-3">
+                  {p.inquireOnly ? "Inquire via" : "Order via"}
+                </p>
                 <ContactButtons
                   size="sm"
-                  message={`Hello, I'd like to order ${p.name}. Please share pricing and availability.`}
+                  message={
+                    p.inquireOnly
+                      ? `Hello, I'd like pricing and availability for ${p.name}.`
+                      : `Hello, I'd like to order ${p.name}. Please confirm available sizes and total.`
+                  }
                 />
               </div>
             </div>
