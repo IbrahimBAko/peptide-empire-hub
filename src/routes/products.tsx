@@ -3,6 +3,7 @@ import { useMemo, useState } from "react";
 import { products } from "@/lib/products";
 import { ContactButtons } from "@/components/contact-buttons";
 import { CoaViewer, LabVerifiedBadge } from "@/components/coa-viewer";
+import { AddToCart } from "@/components/add-to-cart";
 import { Check, Search, FlaskConical } from "lucide-react";
 
 export const Route = createFileRoute("/products")({
@@ -150,7 +151,12 @@ function ProductsPage() {
                 )}
 
                 <div className="mt-5 pt-4 border-t border-border">
-                  <p className="text-[10px] uppercase tracking-widest text-muted-foreground mb-3">Request Information</p>
+                  {p.variants && p.variants.length > 0 && (
+                    <div className="mb-4">
+                      <AddToCart product={p} />
+                    </div>
+                  )}
+                  <p className="text-[10px] uppercase tracking-widest text-muted-foreground mb-3">Or Request Information</p>
                   <ContactButtons
                     size="sm"
                     message={`Hello, I'd like to request institutional pricing and lead times for ${p.name}.`}

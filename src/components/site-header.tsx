@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { Menu, X, MessageCircle } from "lucide-react";
+import { Menu, X, MessageCircle, ShoppingCart } from "lucide-react";
+import { useCart } from "@/lib/cart";
 
 const links = [
   { to: "/", label: "Home" },
@@ -12,6 +13,7 @@ const links = [
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
+  const { count } = useCart();
   return (
     <header className="sticky top-0 z-40 w-full border-b border-border/60 bg-background/80 backdrop-blur-xl">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
@@ -36,6 +38,12 @@ export function SiteHeader() {
               {l.label}
             </Link>
           ))}
+          <Link to="/cart" className="relative text-muted-foreground hover:text-gold transition" aria-label="Cart" activeProps={{ className: "text-gold" }}>
+            <ShoppingCart size={18} />
+            {count > 0 && (
+              <span className="absolute -top-2 -right-2 min-w-[18px] h-[18px] px-1 rounded-full bg-gradient-to-r from-gold to-gold-bright text-primary-foreground text-[10px] font-bold flex items-center justify-center">{count}</span>
+            )}
+          </Link>
           <Link
             to="/contact"
             className="inline-flex items-center gap-2 rounded-md bg-gradient-to-r from-gold to-gold-bright px-4 py-1.5 text-xs uppercase tracking-widest text-primary-foreground hover:brightness-110 transition shadow-[var(--shadow-gold)]"
@@ -45,6 +53,12 @@ export function SiteHeader() {
         </nav>
 
         <div className="md:hidden flex items-center gap-3">
+          <Link to="/cart" className="relative text-muted-foreground hover:text-gold" aria-label="Cart">
+            <ShoppingCart size={20} />
+            {count > 0 && (
+              <span className="absolute -top-1.5 -right-1.5 min-w-[16px] h-[16px] px-1 rounded-full bg-gold text-primary-foreground text-[9px] font-bold flex items-center justify-center">{count}</span>
+            )}
+          </Link>
           <Link to="/contact" className="text-gold" aria-label="Contact">
             <MessageCircle size={22} />
           </Link>
