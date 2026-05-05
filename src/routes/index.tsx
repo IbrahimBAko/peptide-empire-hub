@@ -7,6 +7,7 @@ import {
   Globe2, BadgeCheck, ClipboardCheck, Beaker, Quote, ChevronDown,
 } from "lucide-react";
 import { useState } from "react";
+import { FeaturedShowcase } from "@/components/featured-showcase";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -104,10 +105,13 @@ function Index() {
             View full catalog <ArrowRight size={14} />
           </Link>
         </div>
+        <div className="mb-12">
+          <FeaturedShowcase />
+        </div>
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {featured.map((p, i) => (
             <Link key={p.slug} to="/products" style={{ animationDelay: `${i * 70}ms` }}
-              className="group rounded-xl border border-border bg-[var(--gradient-card)] overflow-hidden hover:border-gold/50 hover:shadow-[var(--shadow-luxury)] hover:-translate-y-1 transition-all duration-500 animate-fade-up">
+              className="group tilt-card rounded-xl border border-border bg-[var(--gradient-card)] overflow-hidden hover:border-gold/50 hover:shadow-[var(--shadow-luxury)] transition-all duration-500 animate-fade-up">
               <div className="relative h-44 overflow-hidden">
                 <img src={p.image} alt={p.name} className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
                 <div className="absolute inset-0 bg-gradient-to-t from-card via-card/30 to-transparent" />
@@ -119,10 +123,12 @@ function Index() {
               <div className="p-5">
                 <div className="text-xs uppercase tracking-widest text-gold">{p.category}</div>
                 <p className="mt-1 text-sm text-muted-foreground">{p.tagline}</p>
-                {p.variants && (
+                {p.packs && (
                   <div className="mt-3 flex flex-wrap gap-1">
-                    {p.variants.slice(0, 5).map((v) => (
-                      <span key={v.size} className="text-[10px] px-1.5 py-0.5 rounded border border-gold/30 text-gold/90">{v.size}</span>
+                    {p.packs.slice(0, 4).map((pk) => (
+                      <span key={pk.strength} className="text-[10px] px-1.5 py-0.5 rounded border border-gold/30 text-gold/90">
+                        {pk.strength} {pk.pack}
+                      </span>
                     ))}
                   </div>
                 )}
