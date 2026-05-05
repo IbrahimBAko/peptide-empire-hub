@@ -83,7 +83,7 @@ function ProductsPage() {
             <article
               key={p.slug}
               style={{ animationDelay: `${Math.min(idx * 60, 400)}ms` }}
-              className="group flex flex-col rounded-2xl border border-border bg-[var(--gradient-card)] overflow-hidden hover:border-gold/50 hover:shadow-[var(--shadow-luxury)] hover:-translate-y-1 transition-all duration-500 animate-fade-up"
+              className="group tilt-card flex flex-col rounded-2xl border border-border bg-[var(--gradient-card)] overflow-hidden hover:border-gold/50 hover:shadow-[var(--shadow-luxury)] transition-all duration-500 animate-fade-up"
             >
               <div className="relative h-60 overflow-hidden bg-card">
                 <img
