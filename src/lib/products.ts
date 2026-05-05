@@ -5,8 +5,17 @@ import ghkCuImg from "@/assets/products/ghk-cu.jpg";
 import glowBlendImg from "@/assets/products/glow-blend.jpg";
 import motsCImg from "@/assets/products/mots-c.jpg";
 import vialImg from "@/assets/vial.jpg";
+import bpc157Img from "@/assets/products/bpc-157.jpg";
+import tb500Img from "@/assets/products/tb-500.jpg";
+import nadImg from "@/assets/products/nad.jpg";
+import hghImg from "@/assets/products/hgh.jpg";
+import melanotanImg from "@/assets/products/melanotan-2.jpg";
+import ipamorelinImg from "@/assets/products/ipamorelin.jpg";
+import glutathioneImg from "@/assets/products/glutathione.jpg";
+import bacWaterImg from "@/assets/products/bacteriostatic-water.jpg";
 
 export type Variant = { size: string; price: number };
+export type PackSpec = { strength: string; pack: string };
 
 export type Product = {
   slug: string;
@@ -20,6 +29,7 @@ export type Product = {
   variants?: Variant[];
   inquireOnly?: boolean;
   coa?: string; // public path to COA image
+  packs?: PackSpec[]; // catalog-style "5mg × 10 vials"
 };
 
 export const products: Product[] = [
@@ -43,6 +53,12 @@ export const products: Product[] = [
       { size: "50 mg", price: 315 },
       { size: "60 mg", price: 360 },
     ],
+    packs: [
+      { strength: "5mg", pack: "× 10 vials" },
+      { strength: "10mg", pack: "× 10 vials" },
+      { strength: "20mg", pack: "× 10 vials" },
+      { strength: "50mg", pack: "× 10 vials" },
+    ],
   },
   {
     slug: "tirzepatide",
@@ -64,6 +80,12 @@ export const products: Product[] = [
       { size: "50 mg", price: 256 },
       { size: "60 mg", price: 293 },
     ],
+    packs: [
+      { strength: "2mg", pack: "× 10 vials" },
+      { strength: "5mg", pack: "× 10 vials" },
+      { strength: "10mg", pack: "× 10 vials" },
+      { strength: "50mg", pack: "× 10 vials" },
+    ],
   },
   {
     slug: "tirzepatide-pen",
@@ -80,6 +102,12 @@ export const products: Product[] = [
       { size: "5 mg", price: 43 },
       { size: "10 mg", price: 56 },
       { size: "15 mg", price: 72 },
+    ],
+    packs: [
+      { strength: "2mg", pack: "1 pen" },
+      { strength: "5mg", pack: "1 pen" },
+      { strength: "10mg", pack: "1 pen" },
+      { strength: "15mg", pack: "1 pen" },
     ],
   },
   {
@@ -100,6 +128,12 @@ export const products: Product[] = [
       { size: "20 mg", price: 100 },
       { size: "30 mg", price: 131 },
     ],
+    packs: [
+      { strength: "2mg", pack: "× 10 vials" },
+      { strength: "5mg", pack: "× 10 vials" },
+      { strength: "10mg", pack: "× 10 vials" },
+      { strength: "30mg", pack: "× 10 vials" },
+    ],
   },
   {
     slug: "semaglutide-pen",
@@ -114,6 +148,10 @@ export const products: Product[] = [
     variants: [
       { size: "2 mg", price: 30 },
       { size: "5 mg", price: 35 },
+    ],
+    packs: [
+      { strength: "2mg", pack: "1 pen" },
+      { strength: "5mg", pack: "1 pen" },
     ],
   },
   {
@@ -130,6 +168,10 @@ export const products: Product[] = [
       { size: "50 mg", price: 33 },
       { size: "100 mg", price: 65 },
     ],
+    packs: [
+      { strength: "50mg", pack: "× 10 vials" },
+      { strength: "100mg", pack: "× 10 vials" },
+    ],
   },
   {
     slug: "glow-blend",
@@ -142,6 +184,7 @@ export const products: Product[] = [
     purity: "Pharma-grade",
     image: glowBlendImg,
     variants: [{ size: "70 mg", price: 231 }],
+    packs: [{ strength: "70mg", pack: "× 10 vials" }],
   },
   {
     slug: "mots-c",
@@ -156,6 +199,10 @@ export const products: Product[] = [
     variants: [
       { size: "10 mg", price: 70 },
       { size: "40 mg", price: 250 },
+    ],
+    packs: [
+      { strength: "10mg", pack: "× 10 vials" },
+      { strength: "40mg", pack: "× 10 vials" },
     ],
   },
 ];
@@ -203,6 +250,22 @@ const coaMap: Record<string, string> = {
   "pe-22-28": "/coa/pe-22-28-coa.png",
 };
 
+const customImages: Record<string, string> = {
+  "bpc-157": bpc157Img,
+  "tb-500": tb500Img,
+  "nad": nadImg,
+  "hgh": hghImg,
+  "melanotan-2": melanotanImg,
+  "ipamorelin": ipamorelinImg,
+  "glutathione": glutathioneImg,
+  "bacteriostatic-water": bacWaterImg,
+};
+
+const defaultPacks: PackSpec[] = [
+  { strength: "5mg", pack: "× 10 vials" },
+  { strength: "10mg", pack: "× 10 vials" },
+];
+
 for (const item of inquireCatalog) {
   const slug = item.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
   if (products.some((p) => p.slug === slug)) continue;
@@ -214,8 +277,14 @@ for (const item of inquireCatalog) {
     description: `Premium research-grade ${item.name}. Contact us directly for current pricing, available sizes, and bulk inquiries.`,
     highlights: ["Pharma-grade synthesis", "HPLC verified", "Discreet dispatch"],
     purity: "≥ 99.0%",
-    image: vialImg,
+    image: customImages[slug] ?? vialImg,
     inquireOnly: true,
     coa: coaMap[slug],
+    packs:
+      slug === "bacteriostatic-water"
+        ? [{ strength: "10ml", pack: "× 10 vials" }]
+        : slug === "acetic-acid"
+        ? [{ strength: "0.6%", pack: "× 10 vials" }]
+        : defaultPacks,
   });
 }

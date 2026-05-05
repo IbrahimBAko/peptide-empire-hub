@@ -83,7 +83,7 @@ function ProductsPage() {
             <article
               key={p.slug}
               style={{ animationDelay: `${Math.min(idx * 60, 400)}ms` }}
-              className="group flex flex-col rounded-2xl border border-border bg-[var(--gradient-card)] overflow-hidden hover:border-gold/50 hover:shadow-[var(--shadow-luxury)] hover:-translate-y-1 transition-all duration-500 animate-fade-up"
+              className="group tilt-card flex flex-col rounded-2xl border border-border bg-[var(--gradient-card)] overflow-hidden hover:border-gold/50 hover:shadow-[var(--shadow-luxury)] transition-all duration-500 animate-fade-up"
             >
               <div className="relative h-60 overflow-hidden bg-card">
                 <img
@@ -120,14 +120,14 @@ function ProductsPage() {
                 <p className="mt-1 text-sm text-gold">{p.tagline}</p>
                 <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{p.description}</p>
 
-                {/* Strength chips */}
-                {p.variants && p.variants.length > 0 && (
+                {/* Specifications */}
+                {p.packs && p.packs.length > 0 && (
                   <div className="mt-4">
-                    <div className="text-[10px] uppercase tracking-widest text-muted-foreground mb-2">Available Strengths</div>
+                    <div className="text-[10px] uppercase tracking-widest text-muted-foreground mb-2">Specifications</div>
                     <div className="flex flex-wrap gap-1.5">
-                      {p.variants.map((v) => (
-                        <span key={v.size} className="text-[11px] px-2 py-1 rounded border border-gold/30 bg-gold/5 text-gold/90">
-                          {v.size}
+                      {p.packs.map((pk) => (
+                        <span key={pk.strength} className="text-[11px] px-2 py-1 rounded border border-gold/30 bg-gold/5 text-gold/90 font-medium">
+                          {pk.strength} <span className="text-gold/60">{pk.pack}</span>
                         </span>
                       ))}
                     </div>
