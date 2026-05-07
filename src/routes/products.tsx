@@ -1,9 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
-import { products } from "@/lib/products";
+import { products, type Product } from "@/lib/products";
 import { ContactButtons } from "@/components/contact-buttons";
 import { CoaViewer, LabVerifiedBadge } from "@/components/coa-viewer";
 import { AddToCart } from "@/components/add-to-cart";
+import { ProductDetailModal } from "@/components/product-detail-modal";
 import { Check, Search, FlaskConical } from "lucide-react";
 
 export const Route = createFileRoute("/products")({
@@ -21,6 +22,7 @@ export const Route = createFileRoute("/products")({
 function ProductsPage() {
   const [q, setQ] = useState("");
   const [cat, setCat] = useState<string>("All");
+  const [active, setActive] = useState<Product | null>(null);
 
   const categories = useMemo(() => {
     const set = new Set<string>(products.map((p) => p.category));
@@ -84,7 +86,16 @@ function ProductsPage() {
             <article
               key={p.slug}
               style={{ animationDelay: `${Math.min(idx * 60, 400)}ms` }}
-              className="group tilt-card flex flex-col rounded-2xl border border-border bg-[var(--gradient-card)] overflow-hidden hover:border-gold/50 hover:shadow-[var(--shadow-luxury)] transition-all duration-500 animate-fade-up"
+              className="group tilt-card flex flex-col rounded-2xl border border-border bg-[var(--gradient-card)] overflow-hidden hover:border-gold/50 hover:shadow-[var(--shadow-luxury)] transition-all duration-500 animate-fade-up cursor-pointer"
+              onClick={() => setActive(p)}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  setActive(p);
+                }
+              }}
             >
               <div className="relative h-60 overflow-hidden bg-card">
                 <img
@@ -146,11 +157,13 @@ function ProductsPage() {
                 {p.coa && (
                   <div className="mt-4 rounded-lg border border-emerald-400/20 bg-emerald-400/5 p-3">
                     <p className="text-[10px] uppercase tracking-widest text-emerald-300 mb-2">Certificate of Analysis</p>
-                    <CoaViewer coaUrl={p.coa} productName={p.name} />
+                    <div onClick={(e) => e.stopPropagation()}>
+                      <CoaViewer coaUrl={p.coa} productName={p.name} />
+                    </div>
                   </div>
                 )}
 
-                <div className="mt-5 pt-4 border-t border-border">
+                <div className="mt-5 pt-4 border-t border-border" onClick={(e) => e.stopPropagation()}>
                   {p.variants && p.variants.length > 0 && (
                     <div className="mb-4">
                       <AddToCart product={p} />
@@ -161,6 +174,12 @@ function ProductsPage() {
                     size="sm"
                     message={`Hello, I'd like to request institutional pricing and lead times for ${p.name}.`}
                   />
+                  <button
+                    onClick={(e) => { e.stopPropagation(); setActive(p); }}
+                    className="mt-3 w-full text-[11px] uppercase tracking-widest text-gold hover:text-gold-bright transition"
+                  >
+                    View Full Details →
+                  </button>
                 </div>
               </div>
             </article>
@@ -171,6 +190,12 @@ function ProductsPage() {
       <p className="mt-16 text-center text-xs text-muted-foreground max-w-xl mx-auto">
         All products are sold strictly for laboratory research and institutional procurement. Not for human consumption. Pricing confirmed by specialist.
       </p>
+
+      <ProductDetailModal
+        product={active}
+        open={!!active}
+        onOpenChange={(o) => !o && setActive(null)}
+      />
     </div>
   );
 }
