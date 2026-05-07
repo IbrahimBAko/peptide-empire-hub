@@ -20,7 +20,16 @@ function CartPage() {
   const { items, updateQty, remove, clear, subtotal, count } = useCart();
   const [step, setStep] = useState<1 | 2>(1);
   const [channel, setChannel] = useState<Channel>("whatsapp");
-  const [form, setForm] = useState({ name: "", email: "", whatsapp: "", country: "", notes: "" });
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    whatsapp: "",
+    telegram: "",
+    country: "",
+    organization: "",
+    payment: "Chime",
+    notes: "",
+  });
 
   if (count === 0) {
     return (
@@ -47,7 +56,10 @@ function CartPage() {
       `Name: ${form.name}`,
       `Email: ${form.email}`,
       `WhatsApp: ${form.whatsapp}`,
+      form.telegram ? `Telegram: ${form.telegram}` : "",
       `Country: ${form.country}`,
+      form.organization ? `Organization: ${form.organization}` : "",
+      `Preferred payment: ${form.payment}`,
       `Preferred contact: ${channel}`,
       form.notes ? `Notes: ${form.notes}` : "",
     ].filter(Boolean);
@@ -119,7 +131,25 @@ function CartPage() {
                 <Field label="Full Name" value={form.name} onChange={(v) => setForm({ ...form, name: v })} required />
                 <Field label="Email" type="email" value={form.email} onChange={(v) => setForm({ ...form, email: v })} required />
                 <Field label="WhatsApp Number" value={form.whatsapp} onChange={(v) => setForm({ ...form, whatsapp: v })} />
+                <Field label="Telegram Username (optional)" value={form.telegram} onChange={(v) => setForm({ ...form, telegram: v })} />
                 <Field label="Country" value={form.country} onChange={(v) => setForm({ ...form, country: v })} required />
+                <Field label="Organization / Business (optional)" value={form.organization} onChange={(v) => setForm({ ...form, organization: v })} />
+              </div>
+              <div>
+                <label className="text-[10px] uppercase tracking-widest text-muted-foreground">
+                  Preferred Payment Method
+                </label>
+                <select
+                  value={form.payment}
+                  onChange={(e) => setForm({ ...form, payment: e.target.value })}
+                  className="mt-1 w-full rounded-md border border-border bg-card px-3 py-2 text-sm focus:border-gold focus:outline-none"
+                >
+                  <option>Chime</option>
+                  <option>Gift Card</option>
+                  <option>Cash App</option>
+                  <option>Bitcoin (BTC)</option>
+                  <option>USDT (Tron TRC20)</option>
+                </select>
               </div>
               <div>
                 <label className="text-[10px] uppercase tracking-widest text-muted-foreground">Notes (optional)</label>

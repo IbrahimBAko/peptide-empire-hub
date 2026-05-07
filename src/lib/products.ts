@@ -13,6 +13,27 @@ import melanotanImg from "@/assets/products/melanotan-2.jpg";
 import ipamorelinImg from "@/assets/products/ipamorelin.jpg";
 import glutathioneImg from "@/assets/products/glutathione.jpg";
 import bacWaterImg from "@/assets/products/bacteriostatic-water.jpg";
+import cagrilintideImg from "@/assets/products/cagrilintide.jpg";
+import aod9604Img from "@/assets/products/aod-9604.jpg";
+import epitalonImg from "@/assets/products/epitalon.jpg";
+import hcgImg from "@/assets/products/hcg.jpg";
+import hmgImg from "@/assets/products/hmg.jpg";
+import mazdutideImg from "@/assets/products/mazdutide.jpg";
+import survodutideImg from "@/assets/products/survodutide.jpg";
+import semaxImg from "@/assets/products/semax.jpg";
+import sermorelinImg from "@/assets/products/sermorelin.jpg";
+import kisspeptinImg from "@/assets/products/kisspeptin.jpg";
+import oxytocinImg from "@/assets/products/oxytocin.jpg";
+import selankImg from "@/assets/products/selank.jpg";
+import thymosinImg from "@/assets/products/thymosin-alpha-1.jpg";
+import ss31Img from "@/assets/products/ss-31.jpg";
+import dermorphinImg from "@/assets/products/dermorphin.jpg";
+import tesamorelinImg from "@/assets/products/tesamorelin.jpg";
+import glp1Img from "@/assets/products/glp-1.jpg";
+import aceticAcidImg from "@/assets/products/acetic-acid.jpg";
+import topilutamideImg from "@/assets/products/topilutamide.jpg";
+import ru58841Img from "@/assets/products/ru-58841.jpg";
+import pe2228Img from "@/assets/products/pe-22-28.jpg";
 
 export type Variant = { size: string; price: number };
 export type PackSpec = { strength: string; pack: string };
@@ -259,6 +280,27 @@ const customImages: Record<string, string> = {
   "ipamorelin": ipamorelinImg,
   "glutathione": glutathioneImg,
   "bacteriostatic-water": bacWaterImg,
+  "cagrilintide": cagrilintideImg,
+  "aod-9604": aod9604Img,
+  "epitalon": epitalonImg,
+  "hcg": hcgImg,
+  "hmg": hmgImg,
+  "mazdutide": mazdutideImg,
+  "survodutide": survodutideImg,
+  "semax": semaxImg,
+  "sermorelin": sermorelinImg,
+  "kisspeptin": kisspeptinImg,
+  "oxytocin": oxytocinImg,
+  "selank": selankImg,
+  "thymosin-alpha-1": thymosinImg,
+  "ss-31": ss31Img,
+  "dermorphin": dermorphinImg,
+  "tesamorelin": tesamorelinImg,
+  "glp-1": glp1Img,
+  "acetic-acid": aceticAcidImg,
+  "topilutamide": topilutamideImg,
+  "ru-58841": ru58841Img,
+  "pe-22-28": pe2228Img,
 };
 
 const defaultPacks: PackSpec[] = [
