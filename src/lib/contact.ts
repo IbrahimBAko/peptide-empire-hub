@@ -1,8 +1,8 @@
 export const CONTACT = {
-  whatsapp: "1234567890", // placeholder, replace with full intl number, no +
-  telegram: "peptideempire", // placeholder username
-  email: "contact@peptideempire.com", // placeholder
-  phoneDisplay: "+1 (234) 567-890",
+  whatsapp: "673258790",
+  telegram: "673258790",
+  email: "peptideempire4@gmail.com",
+  phoneDisplay: "+673 258 790",
 };
 
 export function waLink(message = "Hello, I'm interested in ordering peptides.") {

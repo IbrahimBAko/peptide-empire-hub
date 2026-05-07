@@ -228,39 +228,137 @@ export const products: Product[] = [
   },
 ];
 
-const inquireCatalog: { name: string; category: string; tagline: string }[] = [
-  { name: "BPC-157", category: "Regenerative", tagline: "Body Protection Compound" },
-  { name: "TB-500", category: "Regenerative", tagline: "Thymosin Beta-4 fragment" },
-  { name: "Cagrilintide", category: "Metabolic", tagline: "Long-acting amylin analog" },
-  { name: "NAD+", category: "Longevity", tagline: "Cellular energy cofactor" },
-  { name: "AOD-9604", category: "Metabolic", tagline: "Lipolytic HGH fragment" },
-  { name: "Epitalon", category: "Longevity", tagline: "Pineal tetrapeptide" },
-  { name: "HGH", category: "Growth", tagline: "Human growth hormone" },
-  { name: "HCG", category: "Hormonal", tagline: "Human chorionic gonadotropin" },
-  { name: "HMG", category: "Hormonal", tagline: "Human menopausal gonadotropin" },
-  { name: "Mazdutide", category: "Metabolic", tagline: "GLP-1 / glucagon dual agonist" },
-  { name: "Survodutide", category: "Metabolic", tagline: "GLP-1 / glucagon dual agonist" },
-  { name: "Melanotan 2", category: "Aesthetic", tagline: "Melanocortin receptor agonist" },
-  { name: "Ipamorelin", category: "Growth", tagline: "Selective GH secretagogue" },
-  { name: "Semax", category: "Cognitive", tagline: "Nootropic heptapeptide" },
-  { name: "Sermorelin", category: "Growth", tagline: "GHRH analog" },
-  { name: "Kisspeptin", category: "Hormonal", tagline: "Reproductive axis peptide" },
-  { name: "Oxytocin", category: "Hormonal", tagline: "Neuropeptide hormone" },
-  { name: "Selank", category: "Cognitive", tagline: "Anxiolytic heptapeptide" },
-  { name: "Thymosin Alpha-1", category: "Immune", tagline: "Immune-modulating peptide" },
-  { name: "SS-31", category: "Mitochondrial", tagline: "Mitochondria-targeted peptide" },
-  { name: "Dermorphin", category: "Research", tagline: "Opioid heptapeptide" },
-  { name: "Glutathione", category: "Antioxidant", tagline: "Master antioxidant tripeptide" },
-  { name: "Botulinum Toxin", category: "Aesthetic", tagline: "Neuromodulator" },
-  { name: "Tesamorelin", category: "Growth", tagline: "GHRH analog" },
-  { name: "Insulin", category: "Hormonal", tagline: "Pancreatic hormone" },
-  { name: "GLP-1", category: "Metabolic", tagline: "Glucagon-like peptide-1" },
-  { name: "Bacteriostatic Water", category: "Reconstitution", tagline: "0.9% benzyl alcohol diluent" },
-  { name: "Acetic Acid", category: "Reconstitution", tagline: "Reconstitution solvent" },
+type CatalogItem = {
+  name: string;
+  category: string;
+  tagline: string;
+  variants?: Variant[];
+  packs?: PackSpec[];
+  unit?: string; // "vials" | "pen" | "vial"
+};
+
+const inquireCatalog: CatalogItem[] = [
+  {
+    name: "BPC-157", category: "Regenerative", tagline: "Body Protection Compound",
+    variants: [{ size: "2 mg", price: 27 }, { size: "5 mg", price: 41 }, { size: "10 mg", price: 81 }],
+  },
+  {
+    name: "TB-500", category: "Regenerative", tagline: "Thymosin Beta-4 fragment",
+    variants: [{ size: "2 mg", price: 49 }, { size: "5 mg", price: 90 }, { size: "10 mg", price: 180 }],
+  },
+  {
+    name: "Cagrilintide", category: "Metabolic", tagline: "Long-acting amylin analog",
+    variants: [{ size: "5 mg", price: 140 }, { size: "10 mg", price: 260 }],
+  },
+  {
+    name: "NAD+", category: "Longevity", tagline: "Cellular energy cofactor",
+    variants: [{ size: "100 mg", price: 60 }, { size: "500 mg", price: 105 }, { size: "1000 mg", price: 200 }],
+  },
+  {
+    name: "AOD-9604", category: "Metabolic", tagline: "Lipolytic HGH fragment 176-191",
+    variants: [{ size: "2 mg", price: 60 }, { size: "5 mg", price: 109 }, { size: "10 mg", price: 195 }],
+  },
+  {
+    name: "Epitalon", category: "Longevity", tagline: "Pineal tetrapeptide",
+    variants: [{ size: "10 mg", price: 38 }, { size: "50 mg", price: 176 }],
+  },
+  {
+    name: "HGH", category: "Growth", tagline: "Human growth hormone (Somatropin 191AA)",
+    variants: [
+      { size: "6 iu", price: 43 }, { size: "8 iu", price: 46 }, { size: "10 iu", price: 49 },
+      { size: "12 iu", price: 65 }, { size: "15 iu", price: 73 },
+    ],
+    unit: "iu",
+  },
+  {
+    name: "HCG", category: "Hormonal", tagline: "Human chorionic gonadotropin",
+    variants: [{ size: "5000 iu", price: 85 }, { size: "10000 iu", price: 165 }],
+  },
+  {
+    name: "HMG", category: "Hormonal", tagline: "Human menopausal gonadotropin",
+    variants: [{ size: "75 iu", price: 68 }],
+  },
+  {
+    name: "Mazdutide", category: "Metabolic", tagline: "GLP-1 / glucagon dual agonist",
+    variants: [{ size: "10 mg", price: 195 }],
+  },
+  {
+    name: "Survodutide", category: "Metabolic", tagline: "GLP-1 / glucagon dual agonist",
+    variants: [{ size: "10 mg", price: 326 }],
+  },
+  {
+    name: "Melanotan 2", category: "Aesthetic", tagline: "Melanocortin receptor agonist",
+    variants: [{ size: "10 mg", price: 50 }],
+  },
+  {
+    name: "Ipamorelin", category: "Growth", tagline: "Selective GH secretagogue",
+    variants: [{ size: "2 mg", price: 22 }, { size: "5 mg", price: 48 }, { size: "10 mg", price: 85 }],
+  },
+  {
+    name: "Semax", category: "Cognitive", tagline: "Nootropic heptapeptide",
+    variants: [{ size: "5 mg", price: 49 }, { size: "10 mg", price: 80 }],
+  },
+  {
+    name: "Sermorelin", category: "Growth", tagline: "GHRH analog",
+    variants: [{ size: "5 mg", price: 81 }, { size: "10 mg", price: 157 }],
+  },
+  {
+    name: "Kisspeptin", category: "Hormonal", tagline: "Kisspeptin-10 reproductive axis peptide",
+    variants: [{ size: "5 mg", price: 66 }, { size: "10 mg", price: 116 }],
+  },
+  {
+    name: "Oxytocin", category: "Hormonal", tagline: "Neuropeptide hormone",
+    variants: [{ size: "2 mg", price: 40 }, { size: "5 mg", price: 68 }],
+  },
+  {
+    name: "Selank", category: "Cognitive", tagline: "Anxiolytic heptapeptide",
+    variants: [{ size: "5 mg", price: 57 }, { size: "10 mg", price: 80 }],
+  },
+  {
+    name: "Thymosin Alpha-1", category: "Immune", tagline: "Immune-modulating peptide",
+    variants: [{ size: "5 mg", price: 178 }, { size: "10 mg", price: 67 }],
+  },
+  {
+    name: "SS-31", category: "Mitochondrial", tagline: "Mitochondria-targeted peptide",
+    variants: [{ size: "10 mg", price: 105 }, { size: "50 mg", price: 455 }],
+  },
+  {
+    name: "Dermorphin", category: "Research", tagline: "Opioid heptapeptide",
+    variants: [{ size: "5 mg", price: 36 }],
+  },
+  {
+    name: "Glutathione", category: "Antioxidant", tagline: "Master antioxidant tripeptide",
+    variants: [{ size: "1500 mg", price: 85 }],
+  },
+  {
+    name: "Botulinum Toxin", category: "Aesthetic", tagline: "Neuromodulator",
+    variants: [{ size: "100 iu", price: 230 }],
+    unit: "iu",
+  },
+  {
+    name: "Tesamorelin", category: "Growth", tagline: "GHRH analog",
+    variants: [{ size: "2 mg", price: 64 }, { size: "5 mg", price: 121 }, { size: "10 mg", price: 200 }],
+  },
+  {
+    name: "Insulin", category: "Hormonal", tagline: "Pancreatic hormone",
+    variants: [{ size: "1 vial", price: 333 }],
+    packs: [{ strength: "1 vial", pack: "/ box" }],
+  },
+  {
+    name: "GLP-1", category: "Metabolic", tagline: "Glucagon-like peptide-1",
+    variants: [{ size: "5 mg", price: 116 }],
+  },
+  {
+    name: "Bacteriostatic Water", category: "Reconstitution", tagline: "0.9% benzyl alcohol diluent",
+    variants: [{ size: "3 ml", price: 10 }, { size: "10 ml", price: 11 }],
+  },
+  {
+    name: "Acetic Acid", category: "Reconstitution", tagline: "0.6% reconstitution solvent",
+    variants: [{ size: "10 ml", price: 16 }],
+  },
   { name: "Topilutamide", category: "Aesthetic", tagline: "Topical anti-androgen (Fluridil)" },
   { name: "RU-58841", category: "Aesthetic", tagline: "Non-steroidal topical anti-androgen" },
   { name: "PE-22-28", category: "Cognitive", tagline: "TREK-1 antagonist research peptide" },
-  { name: "AOD-9604", category: "Metabolic", tagline: "Lipolytic HGH fragment 176-191" },
 ];
 
 // Map of product slug -> COA file path (in /public)
@@ -303,30 +401,34 @@ const customImages: Record<string, string> = {
   "pe-22-28": pe2228Img,
 };
 
-const defaultPacks: PackSpec[] = [
-  { strength: "5mg", pack: "× 10 vials" },
-  { strength: "10mg", pack: "× 10 vials" },
-];
+function variantToPack(v: Variant, unit?: string): PackSpec {
+  const strength = v.size.replace(/\s+/g, "");
+  const isVolume = /ml/i.test(v.size);
+  const isUnit = unit === "iu" || /iu/i.test(v.size);
+  const isPen = /pen/i.test(v.size);
+  const isVial = /vial/i.test(v.size);
+  if (isPen || isVial) return { strength, pack: "/ box" };
+  if (isVolume || isUnit) return { strength, pack: "× 10 vials" };
+  return { strength, pack: "× 10 vials" };
+}
 
 for (const item of inquireCatalog) {
   const slug = item.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
   if (products.some((p) => p.slug === slug)) continue;
+  const variants = item.variants;
+  const packs = item.packs ?? variants?.map((v) => variantToPack(v, item.unit));
   products.push({
     slug,
     name: item.name,
     category: item.category,
     tagline: item.tagline,
-    description: `Premium research-grade ${item.name}. Contact us directly for current pricing, available sizes, and bulk inquiries.`,
-    highlights: ["Pharma-grade synthesis", "HPLC verified", "Discreet dispatch"],
+    description: `Premium research-grade ${item.name}. Independently HPLC-verified, lyophilized for stability and dispatched globally with COA on request.`,
+    highlights: ["Pharma-grade synthesis", "HPLC verified ≥ 99% purity", "Discreet global dispatch"],
     purity: "≥ 99.0%",
     image: customImages[slug] ?? vialImg,
-    inquireOnly: true,
+    inquireOnly: !variants,
     coa: coaMap[slug],
-    packs:
-      slug === "bacteriostatic-water"
-        ? [{ strength: "10ml", pack: "× 10 vials" }]
-        : slug === "acetic-acid"
-        ? [{ strength: "0.6%", pack: "× 10 vials" }]
-        : defaultPacks,
+    variants,
+    packs,
   });
 }
