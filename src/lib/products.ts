@@ -67,6 +67,7 @@ export const products: Product[] = [
     highlights: ["Tri-agonist GLP-1/GIP/GCG", "Lyophilized powder", "Third-party HPLC tested"],
     purity: "≥ 99.0%",
     image: retatrutideImg,
+    coa: "/coa/retatrutide-coa.png",
     variants: [
       { size: "5 mg", price: 95 },
       { size: "10 mg", price: 141 },
@@ -94,6 +95,7 @@ export const products: Product[] = [
     highlights: ["Dual GIP/GLP-1 action", "High-potency formulation", "COA on request"],
     purity: "≥ 99.0%",
     image: tirzepatideImg,
+    coa: "/coa/tirzepatide-coa.png",
     variants: [
       { size: "2 mg", price: 47 },
       { size: "5 mg", price: 47 },
@@ -144,6 +146,7 @@ export const products: Product[] = [
     highlights: ["Long half-life", "Lyophilized stability", "Independently verified"],
     purity: "≥ 99.0%",
     image: semaglutideImg,
+    coa: "/coa/semaglutide-coa.png",
     variants: [
       { size: "2 mg", price: 43 },
       { size: "5 mg", price: 51 },
