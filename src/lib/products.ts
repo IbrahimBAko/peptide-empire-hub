@@ -217,6 +217,7 @@ export const products: Product[] = [
     highlights: ["Mitochondrial origin", "Metabolic research", "Premium synthesis"],
     purity: "≥ 99.0%",
     image: motsCImg,
+    coa: "/coa/mots-c-coa.png",
     variants: [
       { size: "10 mg", price: 70 },
       { size: "40 mg", price: 250 },
@@ -359,6 +360,26 @@ const inquireCatalog: CatalogItem[] = [
   { name: "Topilutamide", category: "Aesthetic", tagline: "Topical anti-androgen (Fluridil)" },
   { name: "RU-58841", category: "Aesthetic", tagline: "Non-steroidal topical anti-androgen" },
   { name: "PE-22-28", category: "Cognitive", tagline: "TREK-1 antagonist research peptide" },
+  {
+    name: "SNAP-8", category: "Aesthetic", tagline: "Acetyl octapeptide-3 cosmetic peptide",
+    variants: [{ size: "10 mg", price: 55 }],
+  },
+  {
+    name: "Melanotan 1", category: "Aesthetic", tagline: "Afamelanotide melanocortin agonist",
+    variants: [{ size: "10 mg", price: 60 }],
+  },
+  {
+    name: "KLOW Blend", category: "Regenerative", tagline: "GHK-Cu + BPC-157 + TB-500 + KPV synergy blend",
+    variants: [{ size: "80 mg", price: 195 }],
+  },
+  {
+    name: "CJC-1295 no DAC", category: "Growth", tagline: "Modified GRF (1-29) GHRH analog",
+    variants: [{ size: "5 mg", price: 49 }, { size: "10 mg", price: 90 }],
+  },
+  {
+    name: "5-Amino-1MQ", category: "Metabolic", tagline: "NNMT inhibitor metabolic research compound",
+    variants: [{ size: "50 mg", price: 110 }],
+  },
 ];
 
 // Map of product slug -> COA file path (in /public)
@@ -367,6 +388,12 @@ const coaMap: Record<string, string> = {
   "topilutamide": "/coa/topilutamide-coa.png",
   "ru-58841": "/coa/ru-58841-coa.png",
   "pe-22-28": "/coa/pe-22-28-coa.png",
+  "hcg": "/coa/hcg-coa.png",
+  "snap-8": "/coa/snap-8-coa.png",
+  "melanotan-1": "/coa/melanotan-1-coa.png",
+  "klow-blend": "/coa/klow-blend-coa.png",
+  "cjc-1295-no-dac": "/coa/cjc-1295-no-dac-coa.png",
+  "5-amino-1mq": "/coa/5-amino-1mq-coa.png",
 };
 
 const customImages: Record<string, string> = {
