@@ -34,6 +34,9 @@ import aceticAcidImg from "@/assets/products/acetic-acid.jpg";
 import topilutamideImg from "@/assets/products/topilutamide.jpg";
 import ru58841Img from "@/assets/products/ru-58841.jpg";
 import pe2228Img from "@/assets/products/pe-22-28.jpg";
+import kpvImg from "@/assets/products/kpv.jpg";
+import hexarelinImg from "@/assets/products/hexarelin.jpg";
+import dalosirvatImg from "@/assets/products/dalosirvat.jpg";
 
 export type Variant = { size: string; price: number };
 export type PackSpec = { strength: string; pack: string };
@@ -64,6 +67,7 @@ export const products: Product[] = [
     highlights: ["Tri-agonist GLP-1/GIP/GCG", "Lyophilized powder", "Third-party HPLC tested"],
     purity: "≥ 99.0%",
     image: retatrutideImg,
+    coa: "/coa/retatrutide-coa.png",
     variants: [
       { size: "5 mg", price: 95 },
       { size: "10 mg", price: 141 },
@@ -91,6 +95,7 @@ export const products: Product[] = [
     highlights: ["Dual GIP/GLP-1 action", "High-potency formulation", "COA on request"],
     purity: "≥ 99.0%",
     image: tirzepatideImg,
+    coa: "/coa/tirzepatide-coa.png",
     variants: [
       { size: "2 mg", price: 47 },
       { size: "5 mg", price: 47 },
@@ -141,6 +146,7 @@ export const products: Product[] = [
     highlights: ["Long half-life", "Lyophilized stability", "Independently verified"],
     purity: "≥ 99.0%",
     image: semaglutideImg,
+    coa: "/coa/semaglutide-coa.png",
     variants: [
       { size: "2 mg", price: 43 },
       { size: "5 mg", price: 51 },
@@ -380,6 +386,18 @@ const inquireCatalog: CatalogItem[] = [
     name: "5-Amino-1MQ", category: "Metabolic", tagline: "NNMT inhibitor metabolic research compound",
     variants: [{ size: "50 mg", price: 110 }],
   },
+  {
+    name: "KPV", category: "Regenerative", tagline: "Anti-inflammatory tripeptide (Lys-Pro-Val)",
+    variants: [{ size: "5 mg", price: 45 }, { size: "10 mg", price: 80 }],
+  },
+  {
+    name: "Hexarelin", category: "Growth", tagline: "Potent GH secretagogue hexapeptide",
+    variants: [{ size: "5 mg", price: 55 }, { size: "10 mg", price: 95 }],
+  },
+  {
+    name: "Dalosirvat", category: "Aesthetic", tagline: "SM04554 Wnt-pathway hair-loss research compound",
+    variants: [{ size: "30 ml", price: 120 }],
+  },
 ];
 
 // Map of product slug -> COA file path (in /public)
@@ -394,6 +412,11 @@ const coaMap: Record<string, string> = {
   "klow-blend": "/coa/klow-blend-coa.png",
   "cjc-1295-no-dac": "/coa/cjc-1295-no-dac-coa.png",
   "5-amino-1mq": "/coa/5-amino-1mq-coa.png",
+  "kpv": "/coa/kpv-coa.png",
+  "hexarelin": "/coa/hexarelin-coa.png",
+  "dalosirvat": "/coa/dalosirvat-coa.png",
+  "glutathione": "/coa/glutathione-coa.png",
+  "bpc-157": "/coa/bpc-157-coa.png",
 };
 
 const customImages: Record<string, string> = {
@@ -426,6 +449,9 @@ const customImages: Record<string, string> = {
   "topilutamide": topilutamideImg,
   "ru-58841": ru58841Img,
   "pe-22-28": pe2228Img,
+  "kpv": kpvImg,
+  "hexarelin": hexarelinImg,
+  "dalosirvat": dalosirvatImg,
 };
 
 function variantToPack(v: Variant, unit?: string): PackSpec {
