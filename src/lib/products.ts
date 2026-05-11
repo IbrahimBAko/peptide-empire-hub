@@ -417,6 +417,14 @@ const coaMap: Record<string, string> = {
   "dalosirvat": "/coa/dalosirvat-coa.png",
   "glutathione": "/coa/glutathione-coa.png",
   "bpc-157": "/coa/bpc-157-coa.png",
+  "selank": "/coa/selank-coa.png",
+  "oxytocin": "/coa/oxytocin-coa.png",
+  "tesamorelin": "/coa/tesamorelin-coa.png",
+  "ace-031": "/coa/ace-031-coa.png",
+  "humanin": "/coa/humanin-coa.png",
+  "ll-37": "/coa/ll-37-coa.png",
+  "pnc-27": "/coa/pnc-27-coa.png",
+  "peg-mgf": "/coa/peg-mgf-coa.png",
 };
 
 const customImages: Record<string, string> = {
