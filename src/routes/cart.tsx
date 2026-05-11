@@ -73,7 +73,7 @@ function CartPage() {
     } else if (channel === "telegram") {
       window.open(`https://t.me/${CONTACT.telegram}?text=${msg}`, "_blank");
     } else {
-      window.location.href = `mailto:${CONTACT.email}?subject=${encodeURIComponent("Peptide Empire — Order Inquiry")}&body=${msg}`;
+      window.location.href = `mailto:${CONTACT.email}?subject=${encodeURIComponent("Product Inquiry – Peptide Empire")}&body=${msg}`;
     }
   };
 
