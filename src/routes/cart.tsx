@@ -46,11 +46,15 @@ function CartPage() {
 
   const buildSummary = () => {
     const lines = [
-      "Hello Peptide Empire — I'd like to confirm this order:",
+      "Hello Peptide Empire,",
+      "",
+      "I would like to place an order for the following products:",
       "",
       ...items.map((i, idx) => `${idx + 1}. ${i.name} — ${i.size} × ${i.quantity}  ($${i.price * i.quantity})`),
       "",
       `Estimated subtotal: $${subtotal}`,
+      "",
+      "Please assist me with pricing and delivery details.",
       "",
       "— Customer details —",
       `Name: ${form.name}`,
@@ -62,6 +66,8 @@ function CartPage() {
       `Preferred payment: ${form.payment}`,
       `Preferred contact: ${channel}`,
       form.notes ? `Notes: ${form.notes}` : "",
+      "",
+      "Thank you.",
     ].filter(Boolean);
     return lines.join("\n");
   };
