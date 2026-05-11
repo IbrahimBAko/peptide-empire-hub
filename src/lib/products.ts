@@ -398,6 +398,26 @@ const inquireCatalog: CatalogItem[] = [
     name: "Dalosirvat", category: "Aesthetic", tagline: "SM04554 Wnt-pathway hair-loss research compound",
     variants: [{ size: "30 ml", price: 120 }],
   },
+  {
+    name: "ACE-031", category: "Growth", tagline: "Myostatin / activin receptor decoy",
+    variants: [{ size: "1 mg", price: 95 }, { size: "5 mg", price: 380 }],
+  },
+  {
+    name: "Humanin", category: "Mitochondrial", tagline: "Mitochondrial-derived cytoprotective peptide",
+    variants: [{ size: "10 mg", price: 130 }],
+  },
+  {
+    name: "LL-37", category: "Immune", tagline: "Cathelicidin antimicrobial peptide",
+    variants: [{ size: "5 mg", price: 95 }],
+  },
+  {
+    name: "PNC-27", category: "Research", tagline: "Anticancer p53-derived membranolytic peptide",
+    variants: [{ size: "5 mg", price: 110 }],
+  },
+  {
+    name: "PEG-MGF", category: "Growth", tagline: "PEGylated mechano growth factor",
+    variants: [{ size: "2 mg", price: 55 }, { size: "5 mg", price: 110 }],
+  },
 ];
 
 // Map of product slug -> COA file path (in /public)
