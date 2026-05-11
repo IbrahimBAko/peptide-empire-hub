@@ -14,7 +14,7 @@ export function FloatingContact() {
           key={i.label}
           href={i.href}
           target="_blank"
-          rel="noreferrer"
+          rel="noopener noreferrer"
           aria-label={i.label}
           className="group relative h-13 w-13 md:h-14 md:w-14 rounded-full flex items-center justify-center shadow-[0_8px_30px_oklch(0_0_0/0.55)] hover:scale-110 transition-transform animate-float"
           style={{ background: i.bg, color: i.fg }}
