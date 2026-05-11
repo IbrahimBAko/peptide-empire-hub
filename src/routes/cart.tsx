@@ -75,9 +75,9 @@ function CartPage() {
   const submit = () => {
     const msg = encodeURIComponent(buildSummary());
     if (channel === "whatsapp") {
-      window.open(`https://wa.me/${CONTACT.whatsapp}?text=${msg}`, "_blank");
+      window.open(`https://wa.me/${CONTACT.whatsapp}?text=${msg}`, "_blank", "noopener,noreferrer");
     } else if (channel === "telegram") {
-      window.open(`https://t.me/${CONTACT.telegram}?text=${msg}`, "_blank");
+      window.open(`https://t.me/${CONTACT.telegram}?text=${msg}`, "_blank", "noopener,noreferrer");
     } else {
       window.location.href = `mailto:${CONTACT.email}?subject=${encodeURIComponent("Product Inquiry – Peptide Empire")}&body=${msg}`;
     }

@@ -58,7 +58,7 @@ function ContactPage() {
             key={c.name}
             href={c.href}
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
             className="group rounded-2xl border border-border bg-[var(--gradient-card)] p-8 hover:border-gold/50 hover:shadow-[var(--shadow-luxury)] transition"
           >
             <span

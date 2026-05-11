@@ -69,7 +69,11 @@ function WholesalePage() {
     ].filter(Boolean).join("\n");
     const subject = `Wholesale Inquiry — ${f.organization}`;
     const url = f.channel === "whatsapp" ? waLink(lines) : f.channel === "telegram" ? tgLink(lines) : mailLink(subject, lines);
-    window.open(url, "_blank", "noopener");
+    if (f.channel === "email") {
+      window.location.href = url;
+    } else {
+      window.open(url, "_blank", "noopener,noreferrer");
+    }
   }
 
   return (
@@ -159,9 +163,9 @@ function WholesalePage() {
             <h3 className="font-display text-xl">Direct Channels</h3>
             <p className="mt-2 text-sm text-muted-foreground">Speak with our wholesale desk:</p>
             <ul className="mt-4 space-y-2 text-sm">
-              <li><a className="text-gold hover:underline" href={waLink()} target="_blank" rel="noreferrer">WhatsApp · {CONTACT.phoneDisplay}</a></li>
-              <li><a className="text-gold hover:underline" href={tgLink()} target="_blank" rel="noreferrer">Telegram · @{CONTACT.telegram}</a></li>
-              <li><a className="text-gold hover:underline" href={mailLink()}>{CONTACT.email}</a></li>
+              <li><a className="text-gold hover:underline" href={waLink()} target="_blank" rel="noopener noreferrer">WhatsApp · {CONTACT.phoneDisplay}</a></li>
+              <li><a className="text-gold hover:underline" href={tgLink()} target="_blank" rel="noopener noreferrer">Telegram · {CONTACT.phoneDisplay}</a></li>
+              <li><a className="text-gold hover:underline" href={mailLink()} target="_blank" rel="noopener noreferrer">{CONTACT.email}</a></li>
             </ul>
           </div>
           <div className="rounded-2xl border border-border bg-card/50 p-6">
