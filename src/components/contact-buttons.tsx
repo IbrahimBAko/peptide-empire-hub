@@ -20,7 +20,7 @@ export function ContactButtons({ message, size = "md", variant = "row" }: Props)
       <a
         href={waLink(message)}
         target="_blank"
-        rel="noreferrer"
+        rel="noopener noreferrer"
         className={`${sizing} inline-flex items-center justify-center gap-2 rounded-md bg-[#25D366] text-black font-medium hover:brightness-110 transition shadow-md`}
       >
         <MessageCircle size={16} /> WhatsApp
@@ -28,13 +28,15 @@ export function ContactButtons({ message, size = "md", variant = "row" }: Props)
       <a
         href={tgLink(message)}
         target="_blank"
-        rel="noreferrer"
+        rel="noopener noreferrer"
         className={`${sizing} inline-flex items-center justify-center gap-2 rounded-md bg-[#229ED9] text-white font-medium hover:brightness-110 transition shadow-md`}
       >
         <Send size={16} /> Telegram
       </a>
       <a
         href={mailLink("Peptide Order Inquiry", message ?? "Hello, I'd like to order:")}
+        target="_blank"
+        rel="noopener noreferrer"
         className={`${sizing} inline-flex items-center justify-center gap-2 rounded-md border border-gold/40 bg-card text-foreground font-medium hover:border-gold hover:text-gold transition`}
       >
         <Mail size={16} /> Gmail
