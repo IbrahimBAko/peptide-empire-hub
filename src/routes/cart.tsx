@@ -70,14 +70,12 @@ function CartPage() {
     return lines.join("\n");
   };
 
-  const submit = () => {
-    const msg = encodeURIComponent(buildSummary());
-    if (channel === "whatsapp") {
-      window.open(`https://wa.me/${CONTACT.whatsapp}?text=${msg}`, "_blank", "noopener,noreferrer");
-    } else {
-      window.location.href = `mailto:${CONTACT.email}?subject=${encodeURIComponent("Product Inquiry – Peptide Empire")}&body=${msg}`;
-    }
-  };
+  const canSubmit = Boolean(form.name && form.email && form.country);
+  const msg = encodeURIComponent(buildSummary());
+  const submitHref =
+    channel === "whatsapp"
+      ? `https://wa.me/${CONTACT.whatsapp}?text=${msg}`
+      : `mailto:${CONTACT.email}?subject=${encodeURIComponent("Product Inquiry – Peptide Empire")}&body=${msg}`;
 
   return (
     <div className="mx-auto max-w-6xl px-6 py-16">
@@ -193,13 +191,23 @@ function CartPage() {
             </button>
           ) : (
             <div className="mt-6 space-y-2">
-              <button
-                onClick={submit}
-                disabled={!form.name || !form.email || !form.country}
-                className="w-full rounded-md bg-gradient-to-r from-gold to-gold-bright px-4 py-3 text-xs font-semibold uppercase tracking-widest text-primary-foreground hover:brightness-110 transition shadow-[var(--shadow-gold)] disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                Send Inquiry via {channel}
-              </button>
+              {canSubmit ? (
+                <a
+                  href={submitHref}
+                  target={channel === "whatsapp" ? "_blank" : undefined}
+                  rel={channel === "whatsapp" ? "noopener noreferrer" : undefined}
+                  className="block w-full text-center rounded-md bg-gradient-to-r from-gold to-gold-bright px-4 py-3 text-xs font-semibold uppercase tracking-widest text-primary-foreground hover:brightness-110 transition shadow-[var(--shadow-gold)]"
+                >
+                  Send Inquiry via {channel}
+                </a>
+              ) : (
+                <button
+                  disabled
+                  className="w-full rounded-md bg-gradient-to-r from-gold to-gold-bright px-4 py-3 text-xs font-semibold uppercase tracking-widest text-primary-foreground shadow-[var(--shadow-gold)] opacity-50 cursor-not-allowed"
+                >
+                  Send Inquiry via {channel}
+                </button>
+              )}
               <button onClick={() => setStep(1)} className="w-full rounded-md border border-border px-4 py-2 text-xs uppercase tracking-widest text-muted-foreground hover:border-gold hover:text-gold transition">
                 Back
               </button>
