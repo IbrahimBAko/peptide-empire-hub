@@ -69,11 +69,7 @@ function WholesalePage() {
     ].filter(Boolean).join("\n");
     const subject = `Wholesale Inquiry — ${f.organization}`;
     const url = f.channel === "whatsapp" ? waLink(lines) : mailLink(subject, lines);
-    if (f.channel === "email") {
-      window.location.href = url;
-    } else {
-      window.open(url, "_blank", "noopener,noreferrer");
-    }
+    window.location.href = url;
   }
 
   return (
