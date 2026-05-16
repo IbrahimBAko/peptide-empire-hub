@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { CONTACT, mailLink, tgLink, waLink } from "@/lib/contact";
-import { Building2, Globe2, ShieldCheck, Truck, MessageCircle, Send, Mail } from "lucide-react";
+import { CONTACT, mailLink, waLink } from "@/lib/contact";
+import { Building2, Globe2, ShieldCheck, Truck, MessageCircle, Mail } from "lucide-react";
 
 export const Route = createFileRoute("/wholesale")({
   head: () => ({
@@ -25,7 +25,7 @@ type Form = {
   products: string;
   volume: string;
   notes: string;
-  channel: "whatsapp" | "telegram" | "email";
+  channel: "whatsapp" | "email";
 };
 
 function WholesalePage() {
@@ -68,7 +68,7 @@ function WholesalePage() {
       "Please share institutional pricing, lead times and COA documentation. Thank you.",
     ].filter(Boolean).join("\n");
     const subject = `Wholesale Inquiry — ${f.organization}`;
-    const url = f.channel === "whatsapp" ? waLink(lines) : f.channel === "telegram" ? tgLink(lines) : mailLink(subject, lines);
+    const url = f.channel === "whatsapp" ? waLink(lines) : mailLink(subject, lines);
     if (f.channel === "email") {
       window.location.href = url;
     } else {
@@ -137,7 +137,7 @@ function WholesalePage() {
             </Field>
             <Field label="Preferred Channel">
               <select className={inputCls} value={f.channel} onChange={(e) => setF({ ...f, channel: e.target.value as Form["channel"] })}>
-                <option value="whatsapp">WhatsApp</option><option value="telegram">Telegram</option><option value="email">Email</option>
+                <option value="whatsapp">WhatsApp</option><option value="email">Email</option>
               </select>
             </Field>
             <div className="md:col-span-2">
@@ -151,7 +151,6 @@ function WholesalePage() {
             className="mt-6 inline-flex items-center justify-center gap-2 rounded-md bg-gradient-to-r from-gold to-gold-bright px-7 py-3 text-sm font-semibold uppercase tracking-widest text-primary-foreground shadow-[var(--shadow-gold)] hover:brightness-110 transition"
           >
             {f.channel === "whatsapp" && <MessageCircle size={16} />}
-            {f.channel === "telegram" && <Send size={16} />}
             {f.channel === "email" && <Mail size={16} />}
             Submit Inquiry
           </button>
@@ -164,7 +163,6 @@ function WholesalePage() {
             <p className="mt-2 text-sm text-muted-foreground">Speak with our wholesale desk:</p>
             <ul className="mt-4 space-y-2 text-sm">
               <li><a className="text-gold hover:underline" href={waLink()} target="_blank" rel="noopener noreferrer">WhatsApp · {CONTACT.phoneDisplay}</a></li>
-              <li><a className="text-gold hover:underline" href={tgLink()} target="_blank" rel="noopener noreferrer">Telegram · {CONTACT.phoneDisplay}</a></li>
               <li><a className="text-gold hover:underline" href={mailLink()} target="_blank" rel="noopener noreferrer">{CONTACT.email}</a></li>
             </ul>
           </div>
