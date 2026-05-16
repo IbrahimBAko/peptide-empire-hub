@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { CONTACT, mailLink, tgLink, waLink } from "@/lib/contact";
-import { Mail, MessageCircle, Send, Clock, ShieldCheck } from "lucide-react";
+import { CONTACT, mailLink, waLink } from "@/lib/contact";
+import { Mail, MessageCircle, Clock, ShieldCheck } from "lucide-react";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -24,14 +24,6 @@ const channels = [
     color: "#25D366",
   },
   {
-    name: "Telegram",
-    desc: "Discreet messaging worldwide.",
-    handle: `@${CONTACT.telegram}`,
-    href: tgLink(),
-    icon: Send,
-    color: "#229ED9",
-  },
-  {
     name: "Email",
     desc: "For detailed inquiries & invoicing.",
     handle: CONTACT.email,
@@ -52,7 +44,7 @@ function ContactPage() {
         Choose the channel you prefer — every message is read by a member of our research team, not a bot.
       </p>
 
-      <div className="mt-14 grid gap-6 md:grid-cols-3">
+      <div className="mt-14 grid gap-6 md:grid-cols-2">
         {channels.map((c) => (
           <a
             key={c.name}
