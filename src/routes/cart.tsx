@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { useCart } from "@/lib/cart";
-import { CONTACT } from "@/lib/contact";
+import { mailLink, waLink } from "@/lib/contact";
 import { ShoppingCart, Trash2, Minus, Plus, MessageCircle, Mail, ShieldCheck, ArrowLeft } from "lucide-react";
 
 export const Route = createFileRoute("/cart")({
@@ -71,11 +71,8 @@ function CartPage() {
   };
 
   const canSubmit = Boolean(form.name && form.email && form.country);
-  const msg = encodeURIComponent(buildSummary());
-  const submitHref =
-    channel === "whatsapp"
-      ? `https://wa.me/${CONTACT.whatsapp}?text=${msg}`
-      : `mailto:${CONTACT.email}?subject=${encodeURIComponent("Product Inquiry – Peptide Empire")}&body=${msg}`;
+  const summary = buildSummary();
+  const submitHref = channel === "whatsapp" ? waLink(summary) : mailLink("Product Inquiry – Peptide Empire", summary);
 
   return (
     <div className="mx-auto max-w-6xl px-6 py-16">
@@ -194,8 +191,8 @@ function CartPage() {
               {canSubmit ? (
                 <a
                   href={submitHref}
-                  target={channel === "whatsapp" ? "_blank" : undefined}
-                  rel={channel === "whatsapp" ? "noopener noreferrer" : undefined}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="block w-full text-center rounded-md bg-gradient-to-r from-gold to-gold-bright px-4 py-3 text-xs font-semibold uppercase tracking-widest text-primary-foreground hover:brightness-110 transition shadow-[var(--shadow-gold)]"
                 >
                   Send Inquiry via {channel}
