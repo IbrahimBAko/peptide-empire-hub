@@ -1,5 +1,5 @@
-import { mailLink, tgLink, waLink } from "@/lib/contact";
-import { Mail, MessageCircle, Send } from "lucide-react";
+import { mailLink, waLink } from "@/lib/contact";
+import { Mail, MessageCircle } from "lucide-react";
 
 type Props = {
   message?: string;
@@ -24,14 +24,6 @@ export function ContactButtons({ message, size = "md", variant = "row" }: Props)
         className={`${sizing} inline-flex items-center justify-center gap-2 rounded-md bg-[#25D366] text-black font-medium hover:brightness-110 transition shadow-md`}
       >
         <MessageCircle size={16} /> WhatsApp
-      </a>
-      <a
-        href={tgLink(message)}
-        target="_blank"
-        rel="noopener noreferrer"
-        className={`${sizing} inline-flex items-center justify-center gap-2 rounded-md bg-[#229ED9] text-white font-medium hover:brightness-110 transition shadow-md`}
-      >
-        <Send size={16} /> Telegram
       </a>
       <a
         href={mailLink("Peptide Order Inquiry", message ?? "Hello, I'd like to order:")}
