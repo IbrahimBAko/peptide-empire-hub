@@ -26,7 +26,7 @@ function AboutPage() {
           Peptide Empire was founded by a circle of researchers and clinicians who refused to compromise on quality. Today we serve laboratories, physicians and discerning enthusiasts across the globe with peptides synthesized in cGMP facilities and verified by independent third parties.
         </p>
         <p className="text-lg text-muted-foreground leading-relaxed">
-          Every vial that bears our seal is HPLC-tested, lyophilized for stability and shipped in plain, tracked packaging. Our specialists are reachable directly — no chatbots, no queues — through WhatsApp, Telegram and Email.
+          Every vial that bears our seal is HPLC-tested, lyophilized for stability and shipped in plain, tracked packaging. Our specialists are reachable directly — no chatbots, no queues — through WhatsApp and Email.
         </p>
       </div>
 

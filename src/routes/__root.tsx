@@ -37,7 +37,7 @@ export const Route = createRootRoute({
       { name: "description", content: "Pharmaceutical-grade research peptides — Retatrutide, Tirzepatide, Semaglutide, GHK-Cu, MOTS-C and more. Discreet worldwide shipping." },
       { name: "author", content: "Peptide Empire" },
       { property: "og:title", content: "Peptide Empire — Premium Research Peptides" },
-      { property: "og:description", content: "Pharmaceutical-grade research peptides with verified purity. Order direct via WhatsApp, Telegram or Email." },
+      { property: "og:description", content: "Pharmaceutical-grade research peptides with verified purity. Order direct via WhatsApp or Email." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@PeptideEmpire" },
