@@ -15,7 +15,7 @@ export const Route = createFileRoute("/")({
       { title: "Peptide Empire — Premium Research Peptides for Institutions" },
       { name: "description", content: "Pharmaceutical-grade research peptides — Tirzepatide, Semaglutide, Retatrutide, GHK-Cu, MOTS-C and more. HPLC verified. Global wholesale supply." },
       { property: "og:title", content: "Peptide Empire — Premium Research Peptides" },
-      { property: "og:description", content: "Verified-purity peptides for laboratories and distributors. Direct via WhatsApp, Telegram or Email." },
+      { property: "og:description", content: "Verified-purity peptides for laboratories and distributors. Direct via WhatsApp or Email." },
     ],
   }),
   component: Index,
@@ -249,9 +249,9 @@ function Index() {
 const faqs = [
   { q: "Are your peptides verified for purity?", a: "Yes. Every batch is HPLC-tested by accredited third-party laboratories. Certificates of Analysis are available on request and visible directly on tested SKUs." },
   { q: "Who can place an order?", a: "Our catalog is presented for institutional, research and wholesale procurement — research laboratories, clinics, compounding pharmacies and authorized distributors." },
-  { q: "How is pricing handled?", a: "Pricing is confirmed by a specialist on request to ensure correct tier, quantity and logistics. Use the inquiry channels (WhatsApp / Telegram / Email) or our wholesale form." },
+  { q: "How is pricing handled?", a: "Pricing is confirmed by a specialist on request to ensure correct tier, quantity and logistics. Use the inquiry channels (WhatsApp / Email) or our wholesale form." },
   { q: "Where do you ship?", a: "We ship to 60+ countries with tracked, customs-managed logistics. Cold-chain shipping is available on request." },
-  { q: "How quickly are inquiries answered?", a: "Specialist response within 24 hours, typically under 15 minutes during business hours via WhatsApp and Telegram." },
+  { q: "How quickly are inquiries answered?", a: "Specialist response within 24 hours, typically under 15 minutes during business hours via WhatsApp." },
   { q: "How is privacy protected?", a: "All conversations occur on private channels of your choice. Shipments use plain, unmarked packaging." },
 ];
 

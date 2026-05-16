@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { CONTACT, mailLink, tgLink, waLink } from "@/lib/contact";
+import { CONTACT, mailLink, waLink } from "@/lib/contact";
 
 export function SiteFooter() {
   return (
@@ -26,7 +26,6 @@ export function SiteFooter() {
           <h4 className="text-sm uppercase tracking-widest text-gold mb-3">Direct Order</h4>
           <ul className="space-y-2 text-sm text-muted-foreground">
             <li><a className="hover:text-gold" href={waLink()} target="_blank" rel="noopener noreferrer">WhatsApp · {CONTACT.phoneDisplay}</a></li>
-            <li><a className="hover:text-gold" href={tgLink()} target="_blank" rel="noopener noreferrer">Telegram · {CONTACT.phoneDisplay}</a></li>
             <li><a className="hover:text-gold" href={mailLink()} target="_blank" rel="noopener noreferrer">{CONTACT.email}</a></li>
           </ul>
         </div>

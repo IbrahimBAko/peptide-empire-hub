@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { useCart } from "@/lib/cart";
 import { CONTACT } from "@/lib/contact";
-import { ShoppingCart, Trash2, Minus, Plus, MessageCircle, Send, Mail, ShieldCheck, ArrowLeft } from "lucide-react";
+import { ShoppingCart, Trash2, Minus, Plus, MessageCircle, Mail, ShieldCheck, ArrowLeft } from "lucide-react";
 
 export const Route = createFileRoute("/cart")({
   head: () => ({
@@ -14,7 +14,7 @@ export const Route = createFileRoute("/cart")({
   component: CartPage,
 });
 
-type Channel = "whatsapp" | "telegram" | "email";
+type Channel = "whatsapp" | "email";
 
 function CartPage() {
   const { items, updateQty, remove, clear, subtotal, count } = useCart();
@@ -24,7 +24,6 @@ function CartPage() {
     name: "",
     email: "",
     whatsapp: "",
-    telegram: "",
     country: "",
     organization: "",
     payment: "Chime",
@@ -60,7 +59,6 @@ function CartPage() {
       `Name: ${form.name}`,
       `Email: ${form.email}`,
       `WhatsApp: ${form.whatsapp}`,
-      form.telegram ? `Telegram: ${form.telegram}` : "",
       `Country: ${form.country}`,
       form.organization ? `Organization: ${form.organization}` : "",
       `Preferred payment: ${form.payment}`,
@@ -76,8 +74,6 @@ function CartPage() {
     const msg = encodeURIComponent(buildSummary());
     if (channel === "whatsapp") {
       window.open(`https://wa.me/${CONTACT.whatsapp}?text=${msg}`, "_blank", "noopener,noreferrer");
-    } else if (channel === "telegram") {
-      window.open(`https://t.me/${CONTACT.telegram}?text=${msg}`, "_blank", "noopener,noreferrer");
     } else {
       window.location.href = `mailto:${CONTACT.email}?subject=${encodeURIComponent("Product Inquiry – Peptide Empire")}&body=${msg}`;
     }
@@ -137,7 +133,6 @@ function CartPage() {
                 <Field label="Full Name" value={form.name} onChange={(v) => setForm({ ...form, name: v })} required />
                 <Field label="Email" type="email" value={form.email} onChange={(v) => setForm({ ...form, email: v })} required />
                 <Field label="WhatsApp Number" value={form.whatsapp} onChange={(v) => setForm({ ...form, whatsapp: v })} />
-                <Field label="Telegram Username (optional)" value={form.telegram} onChange={(v) => setForm({ ...form, telegram: v })} />
                 <Field label="Country" value={form.country} onChange={(v) => setForm({ ...form, country: v })} required />
                 <Field label="Organization / Business (optional)" value={form.organization} onChange={(v) => setForm({ ...form, organization: v })} />
               </div>
@@ -164,10 +159,9 @@ function CartPage() {
               </div>
               <div>
                 <label className="text-[10px] uppercase tracking-widest text-muted-foreground">Preferred contact channel</label>
-                <div className="mt-2 grid grid-cols-3 gap-2">
+                <div className="mt-2 grid grid-cols-2 gap-2">
                   {([
                     { k: "whatsapp", l: "WhatsApp", I: MessageCircle },
-                    { k: "telegram", l: "Telegram", I: Send },
                     { k: "email", l: "Email", I: Mail },
                   ] as const).map((o) => (
                     <button key={o.k} onClick={() => setChannel(o.k)}

@@ -1,10 +1,9 @@
-import { CONTACT, mailLink, tgLink, waLink } from "@/lib/contact";
-import { Mail, MessageCircle, Send } from "lucide-react";
+import { mailLink, waLink } from "@/lib/contact";
+import { Mail, MessageCircle } from "lucide-react";
 
 export function FloatingContact() {
   const items = [
     { href: waLink(), label: "WhatsApp", icon: MessageCircle, bg: "#25D366", fg: "#000" },
-    { href: tgLink(), label: `Telegram @${CONTACT.telegram}`, icon: Send, bg: "#229ED9", fg: "#fff" },
     { href: mailLink(), label: "Email", icon: Mail, bg: "oklch(0.78 0.13 80)", fg: "#000" },
   ];
   return (

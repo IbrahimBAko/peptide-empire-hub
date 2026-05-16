@@ -1,18 +1,11 @@
 export const CONTACT = {
-  whatsapp: "237673258790",
-  telegram: "+237673258790",
+  whatsapp: "15415159726",
   email: "peptideempire4@gmail.com",
-  phoneDisplay: "+237 673 258 790",
+  phoneDisplay: "+1 (541) 515-9726",
 };
 
-export function waLink(message = "Hello, I'm interested in ordering peptides.") {
+export function waLink(message = "Hello Peptide Empire,\n\nI would like to place an order. Please assist me with pricing and delivery details.\n\nThank you.") {
   return `https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(message)}`;
-}
-
-export function tgLink(message = "Hello, I'm interested in ordering peptides.") {
-  // Phone-based Telegram invite link. Text param is appended for compatibility
-  // with username links; phone-invite chats may require pasting manually.
-  return `https://t.me/${CONTACT.telegram}?text=${encodeURIComponent(message)}`;
 }
 
 export function mailLink(subject = "Product Inquiry – Peptide Empire", body = "Hello,\n\nI'd like to order:") {
