@@ -1,0 +1,105 @@
+{
+  "version": 1,
+  "sdk_version": "0.26.1",
+  "path": "/mcp",
+  "auth": {
+    "type": "none"
+  },
+  "mcp": {
+    "server": {
+      "name": "peptide-empire-hub",
+      "version": "0.1.0",
+      "title": "Peptide Empire Hub"
+    },
+    "tools": [
+      {
+        "name": "list_products",
+        "title": "List research peptides",
+        "description": "List Peptide Empire's public research peptide catalog. Optionally filter by search term or category.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "search": {
+              "description": "Case-insensitive match on product name, tagline or category.",
+              "type": "string"
+            },
+            "category": {
+              "description": "Exact category name, e.g. 'Metabolic'.",
+              "type": "string"
+            },
+            "limit": {
+              "description": "Maximum number of products to return (default 50).",
+              "type": "integer",
+              "minimum": -9007199254740991,
+              "maximum": 9007199254740991
+            }
+          }
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "get_product",
+        "title": "Get peptide details",
+        "description": "Get full public details for one research peptide: description, specifications, pack sizes, pricing and Certificate of Analysis availability.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "slug": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Product slug, e.g. 'retatrutide'."
+            }
+          },
+          "required": [
+            "slug"
+          ]
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "list_categories",
+        "title": "List catalog categories",
+        "description": "List every product category in the Peptide Empire catalog with its product count.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {}
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "get_order_info",
+        "title": "Get ordering & contact info",
+        "description": "Get Peptide Empire's inquiry-based ordering process, accepted payment methods and public business contact channels (WhatsApp, email).",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {}
+        },
+        "outputSchema": null
+      }
+    ]
+  }
+}
