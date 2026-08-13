@@ -10,7 +10,7 @@ export function SiteFooter() {
             Peptide <span className="text-gradient-gold">Empire</span>
           </div>
           <p className="mt-3 text-sm text-muted-foreground max-w-xs">
-            Premium research peptides — purity verified, discreetly shipped.
+            Research-use peptide materials supplied to laboratories and authorized distributors, with laboratory documentation published as received.
           </p>
         </div>
         <div>
@@ -18,6 +18,9 @@ export function SiteFooter() {
           <ul className="space-y-2 text-sm text-muted-foreground">
             <li><Link to="/" className="hover:text-gold">Home</Link></li>
             <li><Link to="/products" className="hover:text-gold">Products</Link></li>
+            <li><Link to="/documentation" className="hover:text-gold">Documentation &amp; Quality</Link></li>
+            <li><Link to="/faq" className="hover:text-gold">FAQ</Link></li>
+            <li><Link to="/wholesale" className="hover:text-gold">Wholesale</Link></li>
             <li><Link to="/about" className="hover:text-gold">About</Link></li>
             <li><Link to="/contact" className="hover:text-gold">Contact</Link></li>
           </ul>
@@ -31,7 +34,7 @@ export function SiteFooter() {
         </div>
       </div>
       <div className="border-t border-border/60 py-6 text-center text-xs text-muted-foreground">
-        © {new Date().getFullYear()} Peptide Empire. For research use only. Not for human consumption.
+        © {new Date().getFullYear()} Peptide Empire. All materials are supplied for laboratory research use only — not for human or veterinary consumption, and not medicines. No medical, diagnostic or treatment claims are made.
       </div>
     </footer>
   );
