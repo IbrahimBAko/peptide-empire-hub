@@ -4,10 +4,10 @@ import { ContactButtons } from "@/components/contact-buttons";
 import { products } from "@/lib/products";
 import {
   ShieldCheck, FlaskConical, Truck, Award, ArrowRight, Microscope,
-  Globe2, BadgeCheck, ClipboardCheck, Beaker, Quote, ChevronDown,
+  Globe2, BadgeCheck, ClipboardCheck, Beaker, Quote,
 } from "lucide-react";
-import { useState } from "react";
 import { FeaturedShowcase } from "@/components/featured-showcase";
+import { faqs } from "@/lib/faq";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -219,14 +219,22 @@ function Index() {
       </section>
 
       {/* FAQ */}
-      <section className="mx-auto max-w-4xl px-6 py-20">
-        <div className="text-center max-w-2xl mx-auto">
-          <p className="text-xs uppercase tracking-[0.3em] text-gold">Buyer Confidence</p>
-          <h2 className="mt-2 font-display text-4xl md:text-5xl">Frequently asked.</h2>
+      <section className="mx-auto max-w-4xl px-6 py-20" aria-labelledby="home-faq">
+        <div className="max-w-2xl">
+          <p className="text-xs uppercase tracking-[0.3em] text-gold">Questions &amp; Answers</p>
+          <h2 id="home-faq" className="mt-2 font-display text-4xl md:text-5xl">Frequently asked.</h2>
         </div>
-        <div className="mt-10 space-y-3">
-          {faqs.map((f, i) => <Faq key={i} q={f.q} a={f.a} />)}
-        </div>
+        <dl className="mt-10 grid gap-10 md:grid-cols-2">
+          {faqs.slice(0, 6).map((f) => (
+            <div key={f.q}>
+              <dt className="font-display text-xl leading-snug">{f.q}</dt>
+              <dd className="mt-2 text-sm text-muted-foreground leading-relaxed">{f.a}</dd>
+            </div>
+          ))}
+        </dl>
+        <Link to="/faq" className="mt-10 inline-flex items-center gap-2 text-sm uppercase tracking-widest text-gold hover:text-gold-bright transition">
+          All questions <ArrowRight size={16} />
+        </Link>
       </section>
 
       {/* CTA */}
@@ -246,24 +254,4 @@ function Index() {
   );
 }
 
-const faqs = [
-  { q: "Are your peptides verified for purity?", a: "Yes. Every batch is HPLC-tested by accredited third-party laboratories. Certificates of Analysis are available on request and visible directly on tested SKUs." },
-  { q: "Who can place an order?", a: "Our catalog is presented for institutional, research and wholesale procurement — research laboratories, clinics, compounding pharmacies and authorized distributors." },
-  { q: "How is pricing handled?", a: "Pricing is confirmed by a specialist on request to ensure correct tier, quantity and logistics. Use the inquiry channels (WhatsApp / Email) or our wholesale form." },
-  { q: "Where do you ship?", a: "We ship to 60+ countries with tracked, customs-managed logistics. Cold-chain shipping is available on request." },
-  { q: "How quickly are inquiries answered?", a: "Specialist response within 24 hours, typically under 15 minutes during business hours via WhatsApp." },
-  { q: "How is privacy protected?", a: "All conversations occur on private channels of your choice. Shipments use plain, unmarked packaging." },
-];
 
-function Faq({ q, a }: { q: string; a: string }) {
-  const [open, setOpen] = useState(false);
-  return (
-    <div className="rounded-xl border border-border bg-card/40 overflow-hidden">
-      <button onClick={() => setOpen((v) => !v)} className="w-full flex items-center justify-between gap-4 px-5 py-4 text-left hover:bg-card/70 transition">
-        <span className="font-medium">{q}</span>
-        <ChevronDown size={18} className={`text-gold transition-transform ${open ? "rotate-180" : ""}`} />
-      </button>
-      {open && <div className="px-5 pb-5 text-sm text-muted-foreground leading-relaxed animate-fade-in">{a}</div>}
-    </div>
-  );
-}
