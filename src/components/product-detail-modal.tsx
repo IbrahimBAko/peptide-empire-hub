@@ -1,5 +1,6 @@
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { Check, ShieldCheck, FlaskConical } from "lucide-react";
+import { Check, ShieldCheck, FlaskConical, FileQuestion, AlertTriangle } from "lucide-react";
+import { Link } from "@tanstack/react-router";
 import type { Product } from "@/lib/products";
 import { CoaViewer, LabVerifiedBadge } from "@/components/coa-viewer";
 import { ContactButtons } from "@/components/contact-buttons";
@@ -10,6 +11,12 @@ type Props = {
   open: boolean;
   onOpenChange: (o: boolean) => void;
 };
+
+function SectionTitle({ children }: { children: React.ReactNode }) {
+  return (
+    <h3 className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground mb-2">{children}</h3>
+  );
+}
 
 export function ProductDetailModal({ product, open, onOpenChange }: Props) {
   if (!product) return null;
@@ -38,12 +45,15 @@ export function ProductDetailModal({ product, open, onOpenChange }: Props) {
               <DialogTitle className="font-display text-3xl text-left">{p.name}</DialogTitle>
             </DialogHeader>
             <p className="mt-1 text-sm text-gold">{p.tagline}</p>
-            <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{p.description}</p>
+            <div className="mt-5">
+              <SectionTitle>Product overview</SectionTitle>
+              <p className="text-sm text-muted-foreground leading-relaxed">{p.description}</p>
+            </div>
 
             {p.packs && p.packs.length > 0 && (
               <div className="mt-5">
-                <div className="text-[10px] uppercase tracking-widest text-muted-foreground mb-2 flex items-center gap-1.5">
-                  <FlaskConical size={12} className="text-gold" /> Specifications
+                <div className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground mb-2 flex items-center gap-1.5">
+                  <FlaskConical size={12} className="text-gold" aria-hidden="true" /> Specifications
                 </div>
                 <div className="flex flex-wrap gap-1.5">
                   {p.packs.map((pk) => (
@@ -58,7 +68,8 @@ export function ProductDetailModal({ product, open, onOpenChange }: Props) {
               </div>
             )}
 
-            <ul className="mt-4 space-y-1.5">
+            <div className="mt-5"><SectionTitle>Quality &amp; handling</SectionTitle></div>
+            <ul className="space-y-1.5">
               {p.highlights.map((h) => (
                 <li key={h} className="flex items-start gap-2 text-xs text-muted-foreground">
                   <Check size={12} className="text-gold mt-0.5 flex-shrink-0" /> {h}
@@ -69,14 +80,51 @@ export function ProductDetailModal({ product, open, onOpenChange }: Props) {
               </li>
             </ul>
 
-            {p.coa && (
-              <div className="mt-5 rounded-lg border border-emerald-400/20 bg-emerald-400/5 p-3">
-                <p className="text-[10px] uppercase tracking-widest text-emerald-300 mb-2">
-                  Certificate of Analysis
+            <div className="mt-5">
+              <SectionTitle>Available documentation</SectionTitle>
+              {p.coa ? (
+                <div className="rounded-lg border border-emerald-400/20 bg-emerald-400/5 p-3">
+                  <p className="text-xs text-muted-foreground mb-2">
+                    Certificate of Analysis on file, published as issued by the testing laboratory.
+                  </p>
+                  <CoaViewer coaUrl={p.coa} productName={p.name} />
+                </div>
+              ) : (
+                <div className="rounded-lg border border-border bg-card/50 p-3 flex gap-2">
+                  <FileQuestion size={14} className="text-gold mt-0.5 flex-shrink-0" aria-hidden="true" />
+                  <p className="text-xs text-muted-foreground leading-relaxed">
+                    Documentation availability: contact the company for current documentation.
+                  </p>
+                </div>
+              )}
+            </div>
+
+            <div className="mt-5 rounded-lg border border-border bg-card/50 p-3 flex gap-2">
+              <AlertTriangle size={14} className="text-gold mt-0.5 flex-shrink-0" aria-hidden="true" />
+              <div>
+                <SectionTitle>Important restrictions</SectionTitle>
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                  Supplied for laboratory research use only. Not a medicine, supplement or food; not for human or veterinary consumption. No dosage, administration or protocol guidance is provided. Buyers are responsible for lawful possession and qualified handling in their jurisdiction.
                 </p>
-                <CoaViewer coaUrl={p.coa} productName={p.name} />
               </div>
-            )}
+            </div>
+
+            <div className="mt-5">
+              <SectionTitle>Frequently asked</SectionTitle>
+              <dl className="space-y-3">
+                <div>
+                  <dt className="text-xs font-medium text-foreground">How is pricing confirmed?</dt>
+                  <dd className="text-xs text-muted-foreground leading-relaxed">Catalog prices are indicative; a specialist confirms final pricing, availability and logistics when you send your request.</dd>
+                </div>
+                <div>
+                  <dt className="text-xs font-medium text-foreground">How is this shipped?</dt>
+                  <dd className="text-xs text-muted-foreground leading-relaxed">Tracked dispatch in plain, unmarked outer packaging. Transit times and cold-chain options are confirmed for your address.</dd>
+                </div>
+              </dl>
+              <Link to="/faq" className="mt-3 inline-block text-[11px] uppercase tracking-widest text-gold hover:text-gold-bright transition">
+                All questions →
+              </Link>
+            </div>
 
             <div className="mt-6 pt-4 border-t border-border">
               {p.variants && p.variants.length > 0 && (

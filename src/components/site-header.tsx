@@ -6,7 +6,8 @@ import { useCart } from "@/lib/cart";
 const links = [
   { to: "/", label: "Home" },
   { to: "/products", label: "Products" },
-  { to: "/wholesale", label: "Wholesale" },
+  { to: "/documentation", label: "Documentation" },
+  { to: "/faq", label: "FAQ" },
   { to: "/about", label: "About" },
   { to: "/contact", label: "Contact" },
 ] as const;
@@ -26,7 +27,7 @@ export function SiteHeader() {
           </span>
         </Link>
 
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden lg:flex items-center gap-7">
           {links.map((l) => (
             <Link
               key={l.to}
@@ -52,7 +53,7 @@ export function SiteHeader() {
           </Link>
         </nav>
 
-        <div className="md:hidden flex items-center gap-3">
+        <div className="lg:hidden flex items-center gap-3">
           <Link to="/cart" className="relative text-muted-foreground hover:text-gold" aria-label="Cart">
             <ShoppingCart size={20} />
             {count > 0 && (
@@ -64,27 +65,30 @@ export function SiteHeader() {
           </Link>
           <button
             onClick={() => setOpen((v) => !v)}
-            className="text-foreground"
-            aria-label="Toggle menu"
+            className="text-foreground inline-flex h-11 w-11 items-center justify-center"
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+            aria-controls="mobile-nav"
           >
             {open ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
       </div>
       {open && (
-        <nav className="md:hidden border-t border-border/60 bg-background/95 px-6 py-4 flex flex-col gap-4">
+        <nav id="mobile-nav" aria-label="Mobile" className="lg:hidden border-t border-border/60 bg-background/95 px-6 py-4 flex flex-col gap-4">
           {links.map((l) => (
             <Link
               key={l.to}
               to={l.to}
               onClick={() => setOpen(false)}
-              className="text-sm uppercase tracking-widest text-muted-foreground hover:text-gold"
+              className="py-2 text-sm uppercase tracking-widest text-muted-foreground hover:text-gold"
               activeProps={{ className: "text-gold" }}
               activeOptions={{ exact: l.to === "/" }}
             >
               {l.label}
             </Link>
           ))}
+          <Link to="/wholesale" onClick={() => setOpen(false)} className="py-2 text-sm uppercase tracking-widest text-muted-foreground hover:text-gold">Wholesale</Link>
         </nav>
       )}
     </header>
