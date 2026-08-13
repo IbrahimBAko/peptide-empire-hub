@@ -13,6 +13,8 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as CartRouteImport } from './routes/cart'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as DocumentationRouteImport } from './routes/documentation'
+import { Route as FaqRouteImport } from './routes/faq'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as McpRouteImport } from './routes/mcp'
 import { Route as ProductsRouteImport } from './routes/products'
@@ -40,6 +42,16 @@ const CartRoute = CartRouteImport.update({
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DocumentationRoute = DocumentationRouteImport.update({
+  id: '/documentation',
+  path: '/documentation',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FaqRoute = FaqRouteImport.update({
+  id: '/faq',
+  path: '/faq',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LoginRoute = LoginRouteImport.update({
@@ -91,6 +103,8 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/cart': typeof CartRoute
   '/contact': typeof ContactRoute
+  '/documentation': typeof DocumentationRoute
+  '/faq': typeof FaqRoute
   '/login': typeof LoginRoute
   '/mcp': typeof McpRoute
   '/products': typeof ProductsRoute
@@ -105,6 +119,8 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/cart': typeof CartRoute
   '/contact': typeof ContactRoute
+  '/documentation': typeof DocumentationRoute
+  '/faq': typeof FaqRoute
   '/login': typeof LoginRoute
   '/mcp': typeof McpRoute
   '/products': typeof ProductsRoute
@@ -120,6 +136,8 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/cart': typeof CartRoute
   '/contact': typeof ContactRoute
+  '/documentation': typeof DocumentationRoute
+  '/faq': typeof FaqRoute
   '/login': typeof LoginRoute
   '/mcp': typeof McpRoute
   '/products': typeof ProductsRoute
@@ -136,6 +154,8 @@ export interface FileRouteTypes {
     | '/about'
     | '/cart'
     | '/contact'
+    | '/documentation'
+    | '/faq'
     | '/login'
     | '/mcp'
     | '/products'
@@ -150,6 +170,8 @@ export interface FileRouteTypes {
     | '/about'
     | '/cart'
     | '/contact'
+    | '/documentation'
+    | '/faq'
     | '/login'
     | '/mcp'
     | '/products'
@@ -164,6 +186,8 @@ export interface FileRouteTypes {
     | '/about'
     | '/cart'
     | '/contact'
+    | '/documentation'
+    | '/faq'
     | '/login'
     | '/mcp'
     | '/products'
@@ -179,6 +203,8 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   CartRoute: typeof CartRoute
   ContactRoute: typeof ContactRoute
+  DocumentationRoute: typeof DocumentationRoute
+  FaqRoute: typeof FaqRoute
   LoginRoute: typeof LoginRoute
   McpRoute: typeof McpRoute
   ProductsRoute: typeof ProductsRoute
@@ -217,6 +243,20 @@ declare module '@tanstack/react-router' {
       path: '/contact'
       fullPath: '/contact'
       preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/documentation': {
+      id: '/documentation'
+      path: '/documentation'
+      fullPath: '/documentation'
+      preLoaderRoute: typeof DocumentationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/faq': {
+      id: '/faq'
+      path: '/faq'
+      fullPath: '/faq'
+      preLoaderRoute: typeof FaqRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/login': {
@@ -283,6 +323,8 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   CartRoute: CartRoute,
   ContactRoute: ContactRoute,
+  DocumentationRoute: DocumentationRoute,
+  FaqRoute: FaqRoute,
   LoginRoute: LoginRoute,
   McpRoute: McpRoute,
   ProductsRoute: ProductsRoute,
