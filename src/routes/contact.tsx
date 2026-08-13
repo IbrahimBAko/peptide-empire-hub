@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { CONTACT, mailLink, waLink } from "@/lib/contact";
-import { Mail, MessageCircle, Clock, ShieldCheck } from "lucide-react";
+import { Mail, MessageCircle, Clock, ShieldCheck, FileCheck2, MapPin } from "lucide-react";
+import { Link } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -9,6 +10,8 @@ export const Route = createFileRoute("/contact")({
       { name: "description", content: "Reach Peptide Empire specialists directly via WhatsApp, Telegram or Email for instant pricing and discreet ordering." },
       { property: "og:title", content: "Contact — Peptide Empire" },
       { property: "og:description", content: "Direct, private channels with our specialists." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: ContactPage,
@@ -17,7 +20,7 @@ export const Route = createFileRoute("/contact")({
 const channels = [
   {
     name: "WhatsApp",
-    desc: "Fastest response. End-to-end encrypted.",
+    desc: "Fastest response, read by a member of our team.",
     handle: CONTACT.phoneDisplay,
     href: waLink(),
     icon: MessageCircle,
@@ -25,7 +28,7 @@ const channels = [
   },
   {
     name: "Email",
-    desc: "For detailed inquiries & invoicing.",
+    desc: "For detailed inquiries, documentation requests and invoicing.",
     handle: CONTACT.email,
     href: mailLink(),
     icon: Mail,
@@ -41,7 +44,7 @@ function ContactPage() {
         Speak with a <span className="text-gradient-gold">specialist</span>.
       </h1>
       <p className="mt-4 max-w-2xl text-muted-foreground text-lg">
-        Choose the channel you prefer — every message is read by a member of our research team, not a bot.
+        Choose the channel you prefer — every message is read by a member of our team, not a bot. Tell us the product, quantity and destination and we will confirm pricing, availability, documentation and logistics.
       </p>
 
       <div className="mt-14 grid gap-6 md:grid-cols-2">
@@ -71,24 +74,48 @@ function ContactPage() {
 
       <div className="mt-16 grid gap-6 md:grid-cols-2">
         <div className="rounded-xl border border-border bg-card p-6 flex gap-4">
-          <Clock className="text-gold flex-shrink-0" />
+          <Clock className="text-gold flex-shrink-0" aria-hidden="true" />
           <div>
-            <h3 className="font-display text-lg">24 / 7 Availability</h3>
+            <h3 className="font-display text-lg">Response time</h3>
             <p className="text-sm text-muted-foreground mt-1">
-              We respond around the clock. Average reply time under 15 minutes.
+              Inquiries are typically answered within one business day, and usually much faster on WhatsApp.
             </p>
           </div>
         </div>
         <div className="rounded-xl border border-border bg-card p-6 flex gap-4">
-          <ShieldCheck className="text-gold flex-shrink-0" />
+          <ShieldCheck className="text-gold flex-shrink-0" aria-hidden="true" />
           <div>
-            <h3 className="font-display text-lg">Total Confidentiality</h3>
+            <h3 className="font-display text-lg">Privacy</h3>
             <p className="text-sm text-muted-foreground mt-1">
-              Conversations are private. Orders are shipped in plain, unmarked packaging.
+              We collect only what your inquiry requires and use it to answer and fulfil that inquiry. Shipments go out in plain, unmarked packaging.
+            </p>
+          </div>
+        </div>
+        <div className="rounded-xl border border-border bg-card p-6 flex gap-4">
+          <FileCheck2 className="text-gold flex-shrink-0" aria-hidden="true" />
+          <div>
+            <h3 className="font-display text-lg">Documentation requests</h3>
+            <p className="text-sm text-muted-foreground mt-1">
+              Published Certificates of Analysis are in the{" "}
+              <Link to="/documentation" className="text-gold hover:underline">documentation library</Link>. For anything not published there, ask us and we will confirm what is currently available.
+            </p>
+          </div>
+        </div>
+        <div className="rounded-xl border border-border bg-card p-6 flex gap-4">
+          <MapPin className="text-gold flex-shrink-0" aria-hidden="true" />
+          <div>
+            <h3 className="font-display text-lg">Business details</h3>
+            <p className="text-sm text-muted-foreground mt-1">
+              Peptide Empire operates as a remote supplier of research materials; there is no walk-in location. Registration and entity details are provided directly on request for institutional procurement.
             </p>
           </div>
         </div>
       </div>
+
+      <p className="mt-12 max-w-3xl text-xs text-muted-foreground leading-relaxed">
+        All materials are supplied for laboratory research use only — not for human or veterinary consumption. We do not provide medical, dosage or administration advice. See the{" "}
+        <Link to="/faq" className="text-gold hover:underline">FAQ</Link> for use, shipping, returns and privacy details.
+      </p>
     </div>
   );
 }
