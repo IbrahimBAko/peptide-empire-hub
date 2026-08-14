@@ -1,16 +1,30 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { faqs } from "@/lib/faq";
 import { ContactButtons } from "@/components/contact-buttons";
+import { seoMeta, canonical } from "@/lib/site";
 
 export const Route = createFileRoute("/faq")({
   head: () => ({
-    meta: [
-      { title: "FAQ — Peptide Empire" },
-      { name: "description", content: "Answers on intended use, eligibility, documentation, privacy, shipping, returns and support for Peptide Empire research materials." },
-      { property: "og:title", content: "FAQ — Peptide Empire" },
-      { property: "og:description", content: "Clear answers on use, documentation, shipping, privacy and support." },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
+    meta: seoMeta({
+      title: "Frequently Asked Questions — Peptide Empire",
+      description:
+        "Answers on intended use, eligibility, documentation, privacy, shipping, returns and how to reach support for Peptide Empire research materials.",
+      path: "/faq",
+    }),
+    links: canonical("/faq"),
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: faqs.map((f) => ({
+            "@type": "Question",
+            name: f.q,
+            acceptedAnswer: { "@type": "Answer", text: f.a },
+          })),
+        }),
+      },
     ],
   }),
   component: FaqPage,

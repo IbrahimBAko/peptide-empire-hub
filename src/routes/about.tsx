@@ -1,16 +1,27 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ContactButtons } from "@/components/contact-buttons";
 import { Microscope, Globe2, Lock, Sparkles, FileCheck2, Building2 } from "lucide-react";
+import { seoMeta, canonical, breadcrumbLd } from "@/lib/site";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
-    meta: [
-      { title: "About — Peptide Empire" },
-      { name: "description", content: "Who Peptide Empire is, who we supply, what documentation we publish, and how we handle contact and privacy." },
-      { property: "og:title", content: "About — Peptide Empire" },
-      { property: "og:description", content: "A research-materials supplier: what we do, who we serve, and how we operate." },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
+    meta: seoMeta({
+      title: "About Peptide Empire — Who We Are and How We Operate",
+      description:
+        "What Peptide Empire is, who it supplies, the documentation it publishes, how inquiries and privacy are handled, and the scope and limits of the materials it sells.",
+      path: "/about",
+    }),
+    links: canonical("/about"),
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify(
+          breadcrumbLd([
+            { name: "Home", path: "/" },
+            { name: "About", path: "/about" },
+          ]),
+        ),
+      },
     ],
   }),
   component: AboutPage,
