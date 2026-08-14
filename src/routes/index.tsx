@@ -47,7 +47,7 @@ function Index() {
       {/* HERO */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0">
-          <img src={heroImg} alt="Glowing peptide chains in laboratory" width={1920} height={1080} className="h-full w-full object-cover opacity-40" />
+          <img src={heroImg} alt="" aria-hidden="true" width={1920} height={1080} fetchPriority="high" decoding="async" className="h-full w-full object-cover opacity-40" />
           <div className="absolute inset-0 bg-[var(--gradient-hero)] opacity-90" />
           <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-transparent to-background" />
           <div className="absolute -top-32 -right-32 w-[480px] h-[480px] rounded-full bg-gold/10 blur-3xl animate-float" />
