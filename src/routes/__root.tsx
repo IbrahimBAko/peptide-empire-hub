@@ -5,6 +5,7 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { FloatingContact } from "@/components/floating-contact";
 import { CartProvider } from "@/lib/cart";
+import { SITE_NAME, SITE_URL, GSC_VERIFICATION } from "@/lib/site";
 
 function NotFoundComponent() {
   return (
@@ -36,11 +37,34 @@ export const Route = createRootRoute({
       { title: "Peptide Empire — Premium Research Peptides" },
       { name: "description", content: "Pharmaceutical-grade research peptides — Retatrutide, Tirzepatide, Semaglutide, GHK-Cu, MOTS-C and more. Discreet worldwide shipping." },
       { name: "author", content: "Peptide Empire" },
-      { property: "og:title", content: "Peptide Empire — Premium Research Peptides" },
-      { property: "og:description", content: "Pharmaceutical-grade research peptides with verified purity. Order direct via WhatsApp or Email." },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@PeptideEmpire" },
+      { property: "og:site_name", content: SITE_NAME },
+      { name: "twitter:card", content: "summary_large_image" },
+      // Paste the real Google Search Console code into GSC_VERIFICATION in src/lib/site.ts
+      ...(GSC_VERIFICATION ? [{ name: "google-site-verification", content: GSC_VERIFICATION }] : []),
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          name: SITE_NAME,
+          url: SITE_URL,
+          logo: `${SITE_URL}/favicon.png`,
+          description:
+            "Supplier of peptide materials for laboratory research use only. Ordering is handled by inquiry through WhatsApp or email.",
+        }),
+      },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          name: SITE_NAME,
+          url: SITE_URL,
+        }),
+      },
     ],
     links: [
       {
