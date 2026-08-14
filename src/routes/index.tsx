@@ -8,14 +8,28 @@ import {
 } from "lucide-react";
 import { FeaturedShowcase } from "@/components/featured-showcase";
 import { faqs } from "@/lib/faq";
+import { seoMeta, canonical, SITE_NAME, SITE_URL } from "@/lib/site";
 
 export const Route = createFileRoute("/")({
   head: () => ({
-    meta: [
-      { title: "Peptide Empire — Premium Research Peptides for Institutions" },
-      { name: "description", content: "Pharmaceutical-grade research peptides — Tirzepatide, Semaglutide, Retatrutide, GHK-Cu, MOTS-C and more. HPLC verified. Global wholesale supply." },
-      { property: "og:title", content: "Peptide Empire — Premium Research Peptides" },
-      { property: "og:description", content: "Verified-purity peptides for laboratories and distributors. Direct via WhatsApp or Email." },
+    meta: seoMeta({
+      title: "Peptide Empire — Research Peptides for Laboratories",
+      description:
+        "Peptide Empire supplies peptide materials for laboratory research, publishes the Certificates of Analysis it receives, and handles orders by direct inquiry via WhatsApp or email.",
+      path: "/",
+    }),
+    links: canonical("/"),
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          name: `${SITE_NAME} — Research Peptides for Laboratories`,
+          url: SITE_URL,
+          isPartOf: { "@type": "WebSite", name: SITE_NAME, url: SITE_URL },
+        }),
+      },
     ],
   }),
   component: Index,
