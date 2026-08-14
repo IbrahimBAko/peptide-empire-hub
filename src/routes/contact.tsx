@@ -2,16 +2,27 @@ import { createFileRoute } from "@tanstack/react-router";
 import { CONTACT, mailLink, waLink } from "@/lib/contact";
 import { Mail, MessageCircle, Clock, ShieldCheck, FileCheck2, MapPin } from "lucide-react";
 import { Link } from "@tanstack/react-router";
+import { seoMeta, canonical } from "@/lib/site";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
-    meta: [
-      { title: "Contact — Peptide Empire" },
-      { name: "description", content: "Reach Peptide Empire specialists directly via WhatsApp, Telegram or Email for instant pricing and discreet ordering." },
-      { property: "og:title", content: "Contact — Peptide Empire" },
-      { property: "og:description", content: "Direct, private channels with our specialists." },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
+    meta: seoMeta({
+      title: "Contact Peptide Empire — WhatsApp and Email Inquiries",
+      description:
+        "Contact the Peptide Empire team by WhatsApp or email to ask about availability, documentation, pricing or logistics. Messages are read by a person.",
+      path: "/contact",
+    }),
+    links: canonical("/contact"),
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "ContactPage",
+          name: "Contact Peptide Empire",
+          url: "https://peptide-empire-hub.lovable.app/contact",
+        }),
+      },
     ],
   }),
   component: ContactPage,
