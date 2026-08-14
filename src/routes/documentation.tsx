@@ -3,16 +3,27 @@ import { products } from "@/lib/products";
 import { CoaViewer } from "@/components/coa-viewer";
 import { ContactButtons } from "@/components/contact-buttons";
 import { FileCheck2, FileQuestion, ShieldCheck } from "lucide-react";
+import { seoMeta, canonical, breadcrumbLd } from "@/lib/site";
 
 export const Route = createFileRoute("/documentation")({
   head: () => ({
-    meta: [
-      { title: "Documentation & Quality — Peptide Empire" },
-      { name: "description", content: "Browse published Certificates of Analysis by product, and see how documentation availability is confirmed for items without a published report." },
-      { property: "og:title", content: "Documentation & Quality — Peptide Empire" },
-      { property: "og:description", content: "Certificates of Analysis, organized by product." },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
+    meta: seoMeta({
+      title: "Certificates of Analysis & Documentation — Peptide Empire",
+      description:
+        "Browse the Certificates of Analysis published by product, and see how documentation availability is confirmed for items without a published report.",
+      path: "/documentation",
+    }),
+    links: canonical("/documentation"),
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify(
+          breadcrumbLd([
+            { name: "Home", path: "/" },
+            { name: "Documentation & Quality", path: "/documentation" },
+          ]),
+        ),
+      },
     ],
   }),
   component: DocumentationPage,

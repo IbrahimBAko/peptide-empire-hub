@@ -3,12 +3,14 @@ import { useState } from "react";
 import { useCart } from "@/lib/cart";
 import { mailLink, waLink } from "@/lib/contact";
 import { ShoppingCart, Trash2, Minus, Plus, MessageCircle, Mail, ShieldCheck, ArrowLeft } from "lucide-react";
+import { noindex } from "@/lib/site";
 
 export const Route = createFileRoute("/cart")({
   head: () => ({
     meta: [
       { title: "Your Cart — Peptide Empire" },
       { name: "description", content: "Review your selection and complete a private inquiry to confirm pricing, lead time, and discreet global shipping." },
+      noindex,
     ],
   }),
   component: CartPage,

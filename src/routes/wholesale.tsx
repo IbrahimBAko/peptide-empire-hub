@@ -2,15 +2,17 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { CONTACT, mailLink, waLink } from "@/lib/contact";
 import { Building2, Globe2, ShieldCheck, Truck, MessageCircle, Mail } from "lucide-react";
+import { seoMeta, canonical } from "@/lib/site";
 
 export const Route = createFileRoute("/wholesale")({
   head: () => ({
-    meta: [
-      { title: "Wholesale & Distribution — Peptide Empire" },
-      { name: "description", content: "Institutional, wholesale and distributor inquiries for premium research peptides. Bulk pricing, COA documentation, global logistics." },
-      { property: "og:title", content: "Wholesale & Distribution — Peptide Empire" },
-      { property: "og:description", content: "Partner with Peptide Empire for institutional volume and global distribution." },
-    ],
+    meta: seoMeta({
+      title: "Wholesale & Distribution Inquiries — Peptide Empire",
+      description:
+        "Submit an institutional, wholesale or distributor inquiry. Tell us the items, volumes and destination, and a specialist confirms pricing, documentation and logistics before anything is arranged.",
+      path: "/wholesale",
+    }),
+    links: canonical("/wholesale"),
   }),
   component: WholesalePage,
 });

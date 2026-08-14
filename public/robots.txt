@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+
+# Utility and internal routes — not useful in search results
+Disallow: /cart
+Disallow: /login
+Disallow: /api/
+Disallow: /mcp
+Disallow: /.mcp/
+Disallow: /.well-known/
+Disallow: /.lovable/
+
+Sitemap: https://peptide-empire-hub.lovable.app/sitemap.xml

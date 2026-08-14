@@ -29,6 +29,10 @@ export function ProductDetailModal({ product, open, onOpenChange }: Props) {
             <img
               src={p.image}
               alt={`${p.name} research peptide — Peptide Empire`}
+              width={1024}
+              height={1024}
+              loading="lazy"
+              decoding="async"
               className="h-full w-full object-cover"
             />
             <span className="absolute top-3 left-3 text-[10px] uppercase tracking-widest text-gold border border-gold/40 bg-background/70 backdrop-blur px-2 py-1 rounded">

@@ -8,14 +8,28 @@ import {
 } from "lucide-react";
 import { FeaturedShowcase } from "@/components/featured-showcase";
 import { faqs } from "@/lib/faq";
+import { seoMeta, canonical, SITE_NAME, SITE_URL } from "@/lib/site";
 
 export const Route = createFileRoute("/")({
   head: () => ({
-    meta: [
-      { title: "Peptide Empire — Premium Research Peptides for Institutions" },
-      { name: "description", content: "Pharmaceutical-grade research peptides — Tirzepatide, Semaglutide, Retatrutide, GHK-Cu, MOTS-C and more. HPLC verified. Global wholesale supply." },
-      { property: "og:title", content: "Peptide Empire — Premium Research Peptides" },
-      { property: "og:description", content: "Verified-purity peptides for laboratories and distributors. Direct via WhatsApp or Email." },
+    meta: seoMeta({
+      title: "Peptide Empire — Research Peptides for Laboratories",
+      description:
+        "Peptide Empire supplies peptide materials for laboratory research, publishes the Certificates of Analysis it receives, and handles orders by direct inquiry via WhatsApp or email.",
+      path: "/",
+    }),
+    links: canonical("/"),
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          name: `${SITE_NAME} — Research Peptides for Laboratories`,
+          url: SITE_URL,
+          isPartOf: { "@type": "WebSite", name: SITE_NAME, url: SITE_URL },
+        }),
+      },
     ],
   }),
   component: Index,
@@ -33,7 +47,7 @@ function Index() {
       {/* HERO */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0">
-          <img src={heroImg} alt="Glowing peptide chains in laboratory" width={1920} height={1080} className="h-full w-full object-cover opacity-40" />
+          <img src={heroImg} alt="" aria-hidden="true" width={1920} height={1080} fetchPriority="high" decoding="async" className="h-full w-full object-cover opacity-40" />
           <div className="absolute inset-0 bg-[var(--gradient-hero)] opacity-90" />
           <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-transparent to-background" />
           <div className="absolute -top-32 -right-32 w-[480px] h-[480px] rounded-full bg-gold/10 blur-3xl animate-float" />
