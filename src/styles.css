@@ -213,3 +213,16 @@
 .rotate-y-90 { transform: rotateY(90deg); }
 .tilt-card { transition: transform 0.6s cubic-bezier(0.2, 0.9, 0.3, 1); }
 .tilt-card:hover { transform: perspective(900px) rotateX(4deg) rotateY(-6deg) translateY(-6px); }
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal { opacity: 1; transform: none; }
+  .tilt-card:hover { transform: none; }
+}
