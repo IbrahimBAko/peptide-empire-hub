@@ -6,14 +6,27 @@ import { CoaViewer, LabVerifiedBadge } from "@/components/coa-viewer";
 import { AddToCart } from "@/components/add-to-cart";
 import { ProductDetailModal } from "@/components/product-detail-modal";
 import { Check, Search, FlaskConical } from "lucide-react";
+import { seoMeta, canonical, breadcrumbLd } from "@/lib/site";
 
 export const Route = createFileRoute("/products")({
   head: () => ({
-    meta: [
-      { title: "Research Catalog — Peptide Empire" },
-      { name: "description", content: "Browse our institutional research peptide catalog: Tirzepatide, Semaglutide, Retatrutide, GHK-Cu, MOTS-C and more. Wholesale & lab inquiries only." },
-      { property: "og:title", content: "Research Catalog — Peptide Empire" },
-      { property: "og:description", content: "Premium HPLC-verified research peptides for institutional and wholesale inquiry." },
+    meta: seoMeta({
+      title: "Research Catalog — Peptide Empire",
+      description:
+        "Search the Peptide Empire research catalog by name or category. Each listing shows pack sizes, specifications and whether a Certificate of Analysis is published. Laboratory research use only.",
+      path: "/products",
+    }),
+    links: canonical("/products"),
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify(
+          breadcrumbLd([
+            { name: "Home", path: "/" },
+            { name: "Research Catalog", path: "/products" },
+          ]),
+        ),
+      },
     ],
   }),
   component: ProductsPage,
