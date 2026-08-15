@@ -27,11 +27,9 @@ export function ContactButtons({ message, size = "md", variant = "row" }: Props)
       </a>
       <a
         href={mailLink("Peptide Order Inquiry", message ?? "Hello, I'd like to order:")}
-        target="_blank"
-        rel="noopener noreferrer"
         className={`${sizing} inline-flex items-center justify-center gap-2 rounded-md border border-gold/40 bg-card text-foreground font-medium hover:border-gold hover:text-gold transition`}
       >
-        <Mail size={16} /> Gmail
+        <Mail size={16} /> Email
       </a>
     </div>
   );

@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { useCart } from "@/lib/cart";
-import { mailLink, waLink } from "@/lib/contact";
+import { CONTACT, gmailWebLink, mailLink, waLink } from "@/lib/contact";
 import { ShoppingCart, Trash2, Minus, Plus, MessageCircle, Mail, ShieldCheck, ArrowLeft } from "lucide-react";
 import { noindex } from "@/lib/site";
 
@@ -21,6 +21,7 @@ type Channel = "whatsapp" | "email";
 function CartPage() {
   const { items, updateQty, remove, clear, subtotal, count } = useCart();
   const [step, setStep] = useState<1 | 2>(1);
+  const [copied, setCopied] = useState(false);
   const [channel, setChannel] = useState<Channel>("whatsapp");
   const [form, setForm] = useState({
     name: "",
@@ -193,8 +194,9 @@ function CartPage() {
               {canSubmit ? (
                 <a
                   href={submitHref}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  {...(channel === "whatsapp"
+                    ? { target: "_blank", rel: "noopener noreferrer" }
+                    : {})}
                   className="block w-full text-center rounded-md bg-gradient-to-r from-gold to-gold-bright px-4 py-3 text-xs font-semibold uppercase tracking-widest text-primary-foreground hover:brightness-110 transition shadow-[var(--shadow-gold)]"
                 >
                   Send Inquiry via {channel}
@@ -206,6 +208,36 @@ function CartPage() {
                 >
                   Send Inquiry via {channel}
                 </button>
+              )}
+              {channel === "email" && canSubmit && (
+                <div className="space-y-2 text-center">
+                  <a
+                    href={gmailWebLink("Product Inquiry – Peptide Empire", summary)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block text-[11px] uppercase tracking-widest text-muted-foreground hover:text-gold transition"
+                  >
+                    No mail app? Open in Gmail web
+                  </a>
+                  <button
+                    type="button"
+                    onClick={async () => {
+                      try {
+                        await navigator.clipboard.writeText(`To: ${CONTACT.email}\n\n${summary}`);
+                        setCopied(true);
+                        setTimeout(() => setCopied(false), 2500);
+                      } catch {
+                        setCopied(false);
+                      }
+                    }}
+                    className="w-full rounded-md border border-border px-4 py-2 text-[11px] uppercase tracking-widest text-muted-foreground hover:border-gold hover:text-gold transition"
+                  >
+                    {copied ? "Order details copied" : "Copy order details"}
+                  </button>
+                  <p className="text-[11px] text-muted-foreground">
+                    Send to <span className="text-gold">{CONTACT.email}</span>
+                  </p>
+                </div>
               )}
               <button onClick={() => setStep(1)} className="w-full rounded-md border border-border px-4 py-2 text-xs uppercase tracking-widest text-muted-foreground hover:border-gold hover:text-gold transition">
                 Back
