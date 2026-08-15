@@ -8,6 +8,13 @@ export function waLink(message = "Hello Peptide Empire,\n\nI would like to place
   return `whatsapp://send?phone=${CONTACT.whatsapp}&text=${encodeURIComponent(message)}`;
 }
 
+/** Opens the visitor's default mail app (Gmail app, Apple Mail, Outlook…) with
+ *  recipient, subject and the full message pre-filled. Works on mobile + desktop. */
 export function mailLink(subject = "Product Inquiry – Peptide Empire", body = "Hello,\n\nI'd like to order:") {
-  return `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(CONTACT.email)}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  return `mailto:${CONTACT.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+}
+
+/** Gmail-in-the-browser fallback for people without a mail app configured. */
+export function gmailWebLink(subject = "Product Inquiry – Peptide Empire", body = "Hello,\n\nI'd like to order:") {
+  return `https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=${encodeURIComponent(CONTACT.email)}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
