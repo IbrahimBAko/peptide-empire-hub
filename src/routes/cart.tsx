@@ -21,6 +21,7 @@ type Channel = "whatsapp" | "email";
 function CartPage() {
   const { items, updateQty, remove, clear, subtotal, count } = useCart();
   const [step, setStep] = useState<1 | 2>(1);
+  const [copied, setCopied] = useState(false);
   const [channel, setChannel] = useState<Channel>("whatsapp");
   const [form, setForm] = useState({
     name: "",
