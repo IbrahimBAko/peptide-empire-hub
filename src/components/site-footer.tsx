@@ -29,7 +29,7 @@ export function SiteFooter() {
           <h4 className="text-sm uppercase tracking-widest text-gold mb-3">Direct Order</h4>
           <ul className="space-y-2 text-sm text-muted-foreground">
             <li><a className="hover:text-gold" href={waLink()} target="_blank" rel="noopener noreferrer">WhatsApp · {CONTACT.phoneDisplay}</a></li>
-            <li><a className="hover:text-gold" href={mailLink()} target="_blank" rel="noopener noreferrer">{CONTACT.email}</a></li>
+            <li><a className="hover:text-gold" href={mailLink()}>{CONTACT.email}</a></li>
           </ul>
         </div>
       </div>
