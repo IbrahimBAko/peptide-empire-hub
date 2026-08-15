@@ -161,7 +161,7 @@ function WholesalePage() {
             <p className="mt-2 text-sm text-muted-foreground">Speak with our wholesale desk:</p>
             <ul className="mt-4 space-y-2 text-sm">
               <li><a className="text-gold hover:underline" href={waLink()} target="_blank" rel="noopener noreferrer">WhatsApp · {CONTACT.phoneDisplay}</a></li>
-              <li><a className="text-gold hover:underline" href={mailLink()} target="_blank" rel="noopener noreferrer">{CONTACT.email}</a></li>
+              <li><a className="text-gold hover:underline" href={mailLink()}>{CONTACT.email}</a></li>
             </ul>
           </div>
           <div className="rounded-2xl border border-border bg-card/50 p-6">
