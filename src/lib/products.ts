@@ -37,6 +37,18 @@ import pe2228Img from "@/assets/products/pe-22-28.jpg";
 import kpvImg from "@/assets/products/kpv.jpg";
 import hexarelinImg from "@/assets/products/hexarelin.jpg";
 import dalosirvatImg from "@/assets/products/dalosirvat.jpg";
+import botulinumImg from "@/assets/products/botulinum-toxin.jpg";
+import insulinImg from "@/assets/products/insulin.jpg";
+import snap8Img from "@/assets/products/snap-8.jpg";
+import melanotan1Img from "@/assets/products/melanotan-1.jpg";
+import klowImg from "@/assets/products/klow-blend.jpg";
+import cjc1295Img from "@/assets/products/cjc-1295-no-dac.jpg";
+import amino1mqImg from "@/assets/products/5-amino-1mq.jpg";
+import ace031Img from "@/assets/products/ace-031.jpg";
+import humaninImg from "@/assets/products/humanin.jpg";
+import ll37Img from "@/assets/products/ll-37.jpg";
+import pnc27Img from "@/assets/products/pnc-27.jpg";
+import pegMgfImg from "@/assets/products/peg-mgf.jpg";
 
 export type Variant = { size: string; price: number };
 export type PackSpec = { strength: string; pack: string };
@@ -480,6 +492,18 @@ const customImages: Record<string, string> = {
   "kpv": kpvImg,
   "hexarelin": hexarelinImg,
   "dalosirvat": dalosirvatImg,
+  "botulinum-toxin": botulinumImg,
+  "insulin": insulinImg,
+  "snap-8": snap8Img,
+  "melanotan-1": melanotan1Img,
+  "klow-blend": klowImg,
+  "cjc-1295-no-dac": cjc1295Img,
+  "5-amino-1mq": amino1mqImg,
+  "ace-031": ace031Img,
+  "humanin": humaninImg,
+  "ll-37": ll37Img,
+  "pnc-27": pnc27Img,
+  "peg-mgf": pegMgfImg,
 };
 
 function variantToPack(v: Variant, unit?: string): PackSpec {
