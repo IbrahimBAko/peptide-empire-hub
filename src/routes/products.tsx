@@ -6,7 +6,7 @@ import { CoaViewer, LabVerifiedBadge } from "@/components/coa-viewer";
 import { AddToCart } from "@/components/add-to-cart";
 import { ProductDetailModal } from "@/components/product-detail-modal";
 import { Check, Search, FlaskConical } from "lucide-react";
-import { seoMeta, canonical, breadcrumbLd } from "@/lib/site";
+import { seoMeta, canonical, breadcrumbLd, abs } from "@/lib/site";
 
 export const Route = createFileRoute("/products")({
   head: () => ({
@@ -26,6 +26,42 @@ export const Route = createFileRoute("/products")({
             { name: "Research Catalog", path: "/products" },
           ]),
         ),
+      },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "ItemList",
+          name: "Peptide Empire research catalog",
+          itemListElement: products.map((p, i) => {
+            const prices = (p.variants ?? []).map((v) => v.price).filter((n) => n > 0);
+            return {
+              "@type": "ListItem",
+              position: i + 1,
+              item: {
+                "@type": "Product",
+                name: p.name,
+                url: `${abs("/products")}#${p.slug}`,
+                ...(p.image ? { image: abs(String(p.image)) } : {}),
+                ...(p.description ? { description: p.description } : {}),
+                brand: { "@type": "Brand", name: "Peptide Empire" },
+                ...(prices.length
+                  ? {
+                      offers: {
+                        "@type": "AggregateOffer",
+                        priceCurrency: "USD",
+                        lowPrice: Math.min(...prices),
+                        highPrice: Math.max(...prices),
+                        offerCount: prices.length,
+                        availability: "https://schema.org/InStock",
+                        url: abs("/products"),
+                      },
+                    }
+                  : {}),
+              },
+            };
+          }),
+        }),
       },
     ],
   }),
