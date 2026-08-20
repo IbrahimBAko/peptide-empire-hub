@@ -1,3 +1,10 @@
+import halvorsen from "@/assets/reviewers/halvorsen.jpg";
+import aisha from "@/assets/reviewers/aisha.jpg";
+import okafor from "@/assets/reviewers/okafor.jpg";
+import ferreira from "@/assets/reviewers/ferreira.jpg";
+import nakamura from "@/assets/reviewers/nakamura.jpg";
+import whitfield from "@/assets/reviewers/whitfield.jpg";
+
 export type Review = {
   name: string;
   role: string;
@@ -6,6 +13,7 @@ export type Review = {
   title: string;
   body: string;
   verified: boolean;
+  avatar: string;
 };
 
 export const REVIEW_COUNT = 148;
@@ -14,6 +22,7 @@ export const REVIEW_AVERAGE = 4.9;
 export const reviews: Review[] = [
   {
     name: "Dr. M. Halvorsen",
+    avatar: halvorsen,
     role: "Research Lead, Clinical Endocrinology",
     location: "Oslo, Norway",
     rating: 5,
@@ -23,6 +32,7 @@ export const reviews: Review[] = [
   },
   {
     name: "Aisha R.",
+    avatar: aisha,
     role: "Procurement, Compounding Pharmacy",
     location: "Dubai, UAE",
     rating: 5,
@@ -32,6 +42,7 @@ export const reviews: Review[] = [
   },
   {
     name: "J. Okafor",
+    avatar: okafor,
     role: "Regional Distributor, EMEA",
     location: "Lagos, Nigeria",
     rating: 5,
@@ -41,6 +52,7 @@ export const reviews: Review[] = [
   },
   {
     name: "Dr. L. Ferreira",
+    avatar: ferreira,
     role: "Principal Investigator, Peptide Chemistry",
     location: "São Paulo, Brazil",
     rating: 5,
@@ -50,6 +62,7 @@ export const reviews: Review[] = [
   },
   {
     name: "H. Nakamura",
+    avatar: nakamura,
     role: "Lab Manager, Biotech Startup",
     location: "Osaka, Japan",
     rating: 5,
@@ -59,6 +72,7 @@ export const reviews: Review[] = [
   },
   {
     name: "S. Whitfield",
+    avatar: whitfield,
     role: "Independent Distributor",
     location: "Manchester, UK",
     rating: 5,
