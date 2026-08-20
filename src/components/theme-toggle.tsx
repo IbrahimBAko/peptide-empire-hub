@@ -3,6 +3,12 @@ import { Moon, Sun } from "lucide-react";
 
 const KEY = "pe-theme";
 
+function applyTheme(isLight: boolean) {
+  const el = document.documentElement;
+  if (isLight) el.setAttribute("data-theme", "light");
+  else el.removeAttribute("data-theme");
+}
+
 export function ThemeToggle() {
   const [light, setLight] = useState(false);
 
@@ -10,13 +16,13 @@ export function ThemeToggle() {
     const stored = localStorage.getItem(KEY);
     const isLight = stored ? stored === "light" : false;
     setLight(isLight);
-    document.documentElement.classList.toggle("light", isLight);
+    applyTheme(isLight);
   }, []);
 
   const toggle = () => {
     setLight((prev) => {
       const next = !prev;
-      document.documentElement.classList.toggle("light", next);
+      applyTheme(next);
       localStorage.setItem(KEY, next ? "light" : "dark");
       return next;
     });
