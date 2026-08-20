@@ -4,10 +4,11 @@ import { ContactButtons } from "@/components/contact-buttons";
 import { products } from "@/lib/products";
 import {
   ShieldCheck, FlaskConical, Truck, Award, ArrowRight, Microscope,
-  Globe2, BadgeCheck, ClipboardCheck, Beaker, Quote,
+  Globe2, BadgeCheck, ClipboardCheck, Beaker,
 } from "lucide-react";
 import { FeaturedShowcase } from "@/components/featured-showcase";
 import { faqs } from "@/lib/faq";
+import { ReviewsSection } from "@/components/reviews-section";
 import { seoMeta, canonical, SITE_NAME, SITE_URL } from "@/lib/site";
 
 export const Route = createFileRoute("/")({
@@ -207,30 +208,8 @@ function Index() {
         </div>
       </section>
 
-      {/* TESTIMONIALS */}
-      <section className="mx-auto max-w-7xl px-6 py-20">
-        <div className="text-center max-w-2xl mx-auto">
-          <p className="text-xs uppercase tracking-[0.3em] text-gold">Voices of Research</p>
-          <h2 className="mt-2 font-display text-4xl md:text-5xl">Trusted by professionals.</h2>
-        </div>
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
-          {[
-            { q: "Consistent purity batch after batch. Their COA documentation is the most thorough we've worked with.", a: "Dr. M. Halvorsen", r: "Research Lead, Clinical Endocrinology" },
-            { q: "Logistics are flawless. Cold-chain shipments to our facility have arrived intact every single time.", a: "Aisha R.", r: "Procurement, Compounding Pharmacy" },
-            { q: "The wholesale program made it possible to scale our distribution across three regions in under six months.", a: "J. Okafor", r: "Regional Distributor, EMEA" },
-          ].map((t, i) => (
-            <div key={i} style={{ animationDelay: `${i * 100}ms` }}
-              className="rounded-2xl border border-border bg-[var(--gradient-card)] p-6 animate-fade-up">
-              <Quote className="text-gold" size={22} />
-              <p className="mt-4 text-sm text-foreground/90 leading-relaxed">{t.q}</p>
-              <div className="mt-5 pt-4 border-t border-border">
-                <div className="text-sm font-semibold text-gold">{t.a}</div>
-                <div className="text-[11px] uppercase tracking-widest text-muted-foreground mt-0.5">{t.r}</div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
+      {/* REVIEWS */}
+      <ReviewsSection />
 
       {/* FAQ */}
       <section className="mx-auto max-w-4xl px-6 py-20" aria-labelledby="home-faq">
