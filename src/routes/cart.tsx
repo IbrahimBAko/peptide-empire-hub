@@ -2,6 +2,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { useCart } from "@/lib/cart";
 import { CONTACT, gmailWebLink, mailLink, waLink } from "@/lib/contact";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { CheckCircle2 } from "lucide-react";
 import { ShoppingCart, Trash2, Minus, Plus, MessageCircle, Mail, ShieldCheck, ArrowLeft } from "lucide-react";
 import { noindex } from "@/lib/site";
 
@@ -22,13 +24,14 @@ function CartPage() {
   const { items, updateQty, remove, clear, subtotal, count } = useCart();
   const [step, setStep] = useState<1 | 2>(1);
   const [copied, setCopied] = useState(false);
+  const [sent, setSent] = useState(false);
   const [channel, setChannel] = useState<Channel>("whatsapp");
   const [form, setForm] = useState({
     name: "",
     email: "",
     whatsapp: "",
     country: "",
-    organization: "",
+    location: "",
     payment: "Chime",
     notes: "",
   });
@@ -63,7 +66,7 @@ function CartPage() {
       `Email: ${form.email}`,
       `WhatsApp: ${form.whatsapp}`,
       `Country: ${form.country}`,
-      form.organization ? `Organization: ${form.organization}` : "",
+      form.location ? `Location / Delivery address: ${form.location}` : "",
       `Preferred payment: ${form.payment}`,
       `Preferred contact: ${channel}`,
       form.notes ? `Notes: ${form.notes}` : "",
@@ -132,7 +135,7 @@ function CartPage() {
                 <Field label="Email" type="email" value={form.email} onChange={(v) => setForm({ ...form, email: v })} required />
                 <Field label="WhatsApp Number" value={form.whatsapp} onChange={(v) => setForm({ ...form, whatsapp: v })} />
                 <Field label="Country" value={form.country} onChange={(v) => setForm({ ...form, country: v })} required />
-                <Field label="Organization / Business (optional)" value={form.organization} onChange={(v) => setForm({ ...form, organization: v })} />
+                <Field label="Location / Delivery Address" value={form.location} onChange={(v) => setForm({ ...form, location: v })} />
               </div>
               <div>
                 <label className="text-[10px] uppercase tracking-widest text-muted-foreground">
@@ -194,6 +197,7 @@ function CartPage() {
               {canSubmit ? (
                 <a
                   href={submitHref}
+                  onClick={() => setTimeout(() => setSent(true), 400)}
                   {...(channel === "whatsapp"
                     ? { target: "_blank", rel: "noopener noreferrer" }
                     : {})}
@@ -213,6 +217,7 @@ function CartPage() {
                 <div className="space-y-2 text-center">
                   <a
                     href={gmailWebLink("Product Inquiry – Peptide Empire", summary)}
+                    onClick={() => setTimeout(() => setSent(true), 400)}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="block text-[11px] uppercase tracking-widest text-muted-foreground hover:text-gold transition"
@@ -254,6 +259,29 @@ function CartPage() {
           </div>
         </aside>
       </div>
+
+      <Dialog open={sent} onOpenChange={setSent}>
+        <DialogContent className="max-w-md text-center">
+          <DialogHeader>
+            <DialogTitle className="font-display text-2xl text-center">Order sent successfully</DialogTitle>
+          </DialogHeader>
+          <CheckCircle2 className="mx-auto text-gold" size={48} />
+          <p className="text-sm text-muted-foreground">
+            {channel === "whatsapp"
+              ? "Your order details have been opened in WhatsApp. Tap send there and a specialist will confirm pricing, availability and delivery shortly."
+              : "Your order details have been opened in your mail app. Press Send there to deliver it — a specialist will reply to you shortly."}
+          </p>
+          <p className="text-xs text-muted-foreground">
+            Confirmation channel: <span className="text-gold">{channel === "whatsapp" ? CONTACT.phoneDisplay : CONTACT.email}</span>
+          </p>
+          <button
+            onClick={() => { setSent(false); clear(); }}
+            className="mt-2 w-full rounded-md bg-gradient-to-r from-gold to-gold-bright px-4 py-3 text-xs font-semibold uppercase tracking-widest text-primary-foreground hover:brightness-110 transition"
+          >
+            Done
+          </button>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
