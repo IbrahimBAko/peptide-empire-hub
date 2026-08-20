@@ -40,12 +40,25 @@ export function ReviewsSection() {
             <figcaption className="mt-4 font-display text-xl leading-snug">{r.title}</figcaption>
             <blockquote className="mt-2 text-sm text-muted-foreground leading-relaxed">{r.body}</blockquote>
             <div className="mt-5 pt-4 border-t border-border">
-              <div className="flex items-center gap-1.5 text-sm font-semibold text-gold">
-                {r.name}
-                {r.verified && <BadgeCheck size={14} aria-label="Verified buyer" />}
-              </div>
-              <div className="text-[11px] uppercase tracking-widest text-muted-foreground mt-0.5">
-                {r.role} · {r.location}
+              <div className="flex items-center gap-3">
+                <img
+                  src={r.avatar}
+                  alt={`${r.name}, ${r.role}`}
+                  width={512}
+                  height={512}
+                  loading="lazy"
+                  decoding="async"
+                  className="h-11 w-11 shrink-0 rounded-full object-cover ring-1 ring-gold/40"
+                />
+                <div className="min-w-0">
+                  <div className="flex items-center gap-1.5 text-sm font-semibold text-gold">
+                    {r.name}
+                    {r.verified && <BadgeCheck size={14} aria-label="Verified buyer" />}
+                  </div>
+                  <div className="text-[11px] uppercase tracking-widest text-muted-foreground mt-0.5">
+                    {r.role} · {r.location}
+                  </div>
+                </div>
               </div>
             </div>
           </figure>
