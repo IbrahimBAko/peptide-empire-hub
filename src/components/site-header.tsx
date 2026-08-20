@@ -2,7 +2,6 @@ import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { Menu, X, MessageCircle, ShoppingCart } from "lucide-react";
 import { useCart } from "@/lib/cart";
-import { ThemeToggle } from "@/components/theme-toggle";
 
 const links = [
   { to: "/", label: "Home" },
@@ -46,7 +45,6 @@ export function SiteHeader() {
               <span className="absolute -top-2 -right-2 min-w-[18px] h-[18px] px-1 rounded-full bg-gradient-to-r from-gold to-gold-bright text-primary-foreground text-[10px] font-bold flex items-center justify-center">{count}</span>
             )}
           </Link>
-          <ThemeToggle />
           <Link
             to="/contact"
             className="inline-flex items-center gap-2 rounded-md bg-gradient-to-r from-gold to-gold-bright px-4 py-1.5 text-xs uppercase tracking-widest text-primary-foreground hover:brightness-110 transition shadow-[var(--shadow-gold)]"
@@ -56,7 +54,6 @@ export function SiteHeader() {
         </nav>
 
         <div className="lg:hidden flex items-center gap-3">
-          <ThemeToggle />
           <Link to="/cart" className="relative text-muted-foreground hover:text-gold" aria-label="Cart">
             <ShoppingCart size={20} />
             {count > 0 && (

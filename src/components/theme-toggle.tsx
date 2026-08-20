@@ -3,21 +3,29 @@ import { Moon, Sun } from "lucide-react";
 
 const KEY = "pe-theme";
 
-export function ThemeToggle({ className = "" }: { className?: string }) {
+function applyTheme(isLight: boolean) {
+  const el = document.documentElement;
+  if (isLight) el.setAttribute("data-theme", "light");
+  else el.removeAttribute("data-theme");
+}
+
+export function ThemeToggle() {
   const [light, setLight] = useState(false);
 
   useEffect(() => {
     const stored = localStorage.getItem(KEY);
-    const isLight = stored === "light";
+    const isLight = stored ? stored === "light" : false;
     setLight(isLight);
-    document.documentElement.classList.toggle("light", isLight);
+    applyTheme(isLight);
   }, []);
 
   const toggle = () => {
-    const next = !light;
-    setLight(next);
-    document.documentElement.classList.toggle("light", next);
-    localStorage.setItem(KEY, next ? "light" : "dark");
+    setLight((prev) => {
+      const next = !prev;
+      applyTheme(next);
+      localStorage.setItem(KEY, next ? "light" : "dark");
+      return next;
+    });
   };
 
   return (
@@ -25,10 +33,9 @@ export function ThemeToggle({ className = "" }: { className?: string }) {
       type="button"
       onClick={toggle}
       aria-label={light ? "Switch to dark mode" : "Switch to light mode"}
-      title={light ? "Switch to dark mode" : "Switch to light mode"}
-      className={`inline-flex h-9 w-9 items-center justify-center rounded-md border border-border/60 text-muted-foreground hover:text-gold hover:border-gold/50 transition-colors ${className}`}
+      className="fixed left-5 bottom-5 z-50 h-12 w-12 md:h-13 md:w-13 rounded-full flex items-center justify-center border border-gold/40 bg-card text-gold shadow-[var(--shadow-gold)] hover:scale-110 transition-transform"
     >
-      {light ? <Moon size={17} /> : <Sun size={17} />}
+      {light ? <Moon size={20} /> : <Sun size={20} />}
     </button>
   );
 }
