@@ -4,6 +4,7 @@ import appCss from "../styles.css?url";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { FloatingContact } from "@/components/floating-contact";
+import { ThemeToggle } from "@/components/theme-toggle";
 import { CartProvider } from "@/lib/cart";
 import { SITE_NAME, SITE_URL, GSC_VERIFICATION } from "@/lib/site";
 
@@ -111,6 +112,7 @@ function RootComponent() {
           </main>
           <SiteFooter />
           <FloatingContact />
+          <ThemeToggle />
       </div>
     </CartProvider>
   );
