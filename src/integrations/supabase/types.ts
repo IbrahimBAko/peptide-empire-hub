@@ -14,7 +14,42 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      customer_reviews: {
+        Row: {
+          approved: boolean
+          body: string
+          created_at: string
+          id: string
+          location: string
+          rating: number
+          reviewer_name: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          approved?: boolean
+          body: string
+          created_at?: string
+          id?: string
+          location: string
+          rating: number
+          reviewer_name: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          approved?: boolean
+          body?: string
+          created_at?: string
+          id?: string
+          location?: string
+          rating?: number
+          reviewer_name?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

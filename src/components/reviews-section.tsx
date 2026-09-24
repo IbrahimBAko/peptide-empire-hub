@@ -1,5 +1,11 @@
+import { useEffect, useState } from "react";
+import { useServerFn } from "@tanstack/react-start";
 import { Star, BadgeCheck, Quote } from "lucide-react";
 import { reviews, REVIEW_AVERAGE, REVIEW_COUNT } from "@/lib/reviews";
+import { getApprovedCustomerReviews } from "@/lib/reviews.functions";
+import { ReviewForm } from "@/components/review-form";
+
+type ApprovedReview = Awaited<ReturnType<typeof getApprovedCustomerReviews>>[number];
 
 function Stars({ rating, size = 14 }: { rating: number; size?: number }) {
   return (
@@ -12,6 +18,21 @@ function Stars({ rating, size = 14 }: { rating: number; size?: number }) {
 }
 
 export function ReviewsSection() {
+  const fetchApprovedReviews = useServerFn(getApprovedCustomerReviews);
+  const [approvedReviews, setApprovedReviews] = useState<ApprovedReview[]>([]);
+
+  useEffect(() => {
+    let active = true;
+    fetchApprovedReviews()
+      .then((result) => {
+        if (active) setApprovedReviews(result);
+      })
+      .catch(() => undefined);
+    return () => {
+      active = false;
+    };
+  }, [fetchApprovedReviews]);
+
   return (
     <section className="mx-auto max-w-7xl px-6 py-20" aria-labelledby="reviews-heading">
       <div className="text-center max-w-2xl mx-auto">
@@ -63,7 +84,33 @@ export function ReviewsSection() {
             </div>
           </figure>
         ))}
+        {approvedReviews.map((review, index) => (
+          <figure
+            key={review.id}
+            style={{ animationDelay: `${(reviews.length + index) * 80}ms` }}
+            className="rounded-2xl border border-border bg-[var(--gradient-card)] p-6 hover:border-gold/50 hover:-translate-y-1 transition-all duration-500 animate-fade-up"
+          >
+            <div className="flex items-center justify-between">
+              <Stars rating={review.rating} />
+              <Quote className="text-gold/50" size={18} />
+            </div>
+            <figcaption className="mt-4 font-display text-xl leading-snug">{review.title}</figcaption>
+            <blockquote className="mt-2 text-sm text-muted-foreground leading-relaxed">{review.body}</blockquote>
+            <div className="mt-5 border-t border-border pt-4">
+              <div className="flex items-center gap-3">
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gold/10 font-display text-lg text-gold ring-1 ring-gold/40" aria-hidden="true">
+                  {review.reviewer_name.charAt(0).toUpperCase()}
+                </div>
+                <div className="min-w-0">
+                  <div className="text-sm font-semibold text-gold">{review.reviewer_name}</div>
+                  <div className="mt-0.5 text-[11px] uppercase tracking-widest text-muted-foreground">{review.location}</div>
+                </div>
+              </div>
+            </div>
+          </figure>
+        ))}
       </div>
+      <ReviewForm />
     </section>
   );
 }

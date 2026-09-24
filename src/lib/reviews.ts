@@ -1,9 +1,9 @@
-import halvorsen from "@/assets/reviewers/halvorsen.jpg";
-import aisha from "@/assets/reviewers/aisha.jpg";
-import okafor from "@/assets/reviewers/okafor.jpg";
-import ferreira from "@/assets/reviewers/ferreira.jpg";
-import nakamura from "@/assets/reviewers/nakamura.jpg";
-import whitfield from "@/assets/reviewers/whitfield.jpg";
+import reviewer1 from "@/assets/reviewers-uploaded/reviewer-1.webp.asset.json";
+import reviewer2 from "@/assets/reviewers-uploaded/reviewer-2.jpeg.asset.json";
+import reviewer3 from "@/assets/reviewers-uploaded/reviewer-3.jpeg.asset.json";
+import reviewer4 from "@/assets/reviewers-uploaded/reviewer-4.jpeg.asset.json";
+import reviewer5 from "@/assets/reviewers-uploaded/reviewer-5.jpeg.asset.json";
+import reviewer6 from "@/assets/reviewers-uploaded/reviewer-6.jpeg.asset.json";
 
 export type Review = {
   name: string;
@@ -22,7 +22,7 @@ export const REVIEW_AVERAGE = 4.9;
 export const reviews: Review[] = [
   {
     name: "Dr. M. Halvorsen",
-    avatar: halvorsen,
+    avatar: reviewer1.url,
     role: "Research Lead, Clinical Endocrinology",
     location: "Oslo, Norway",
     rating: 5,
@@ -32,7 +32,7 @@ export const reviews: Review[] = [
   },
   {
     name: "Aisha R.",
-    avatar: aisha,
+    avatar: reviewer2.url,
     role: "Procurement, Compounding Pharmacy",
     location: "Dubai, UAE",
     rating: 5,
@@ -42,7 +42,7 @@ export const reviews: Review[] = [
   },
   {
     name: "J. Okafor",
-    avatar: okafor,
+    avatar: reviewer3.url,
     role: "Regional Distributor, EMEA",
     location: "Lagos, Nigeria",
     rating: 5,
@@ -52,7 +52,7 @@ export const reviews: Review[] = [
   },
   {
     name: "Dr. L. Ferreira",
-    avatar: ferreira,
+    avatar: reviewer4.url,
     role: "Principal Investigator, Peptide Chemistry",
     location: "São Paulo, Brazil",
     rating: 5,
@@ -62,7 +62,7 @@ export const reviews: Review[] = [
   },
   {
     name: "H. Nakamura",
-    avatar: nakamura,
+    avatar: reviewer5.url,
     role: "Lab Manager, Biotech Startup",
     location: "Osaka, Japan",
     rating: 5,
@@ -72,7 +72,7 @@ export const reviews: Review[] = [
   },
   {
     name: "S. Whitfield",
-    avatar: whitfield,
+    avatar: reviewer6.url,
     role: "Independent Distributor",
     location: "Manchester, UK",
     rating: 5,
