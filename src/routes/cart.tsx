@@ -12,6 +12,10 @@ export const Route = createFileRoute("/cart")({
     meta: [
       { title: "Your Cart — Peptide Empire" },
       { name: "description", content: "Review your selection and complete a private inquiry to confirm pricing, lead time, and discreet global shipping." },
+      { property: "og:title", content: "Your Cart — Peptide Empire" },
+      { property: "og:description", content: "Review your selection and send a private order inquiry to Peptide Empire." },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://peptideempire.store/cart" },
       noindex,
     ],
   }),
@@ -118,9 +122,9 @@ function CartPage() {
                   </div>
                   <div className="mt-auto flex items-center justify-between">
                     <div className="inline-flex items-center rounded-md border border-border">
-                      <button onClick={() => updateQty(i.slug, i.size, i.quantity - 1)} className="px-2 py-1.5 hover:text-gold"><Minus size={12} /></button>
+                      <button aria-label="Decrease quantity" onClick={() => updateQty(i.slug, i.size, i.quantity - 1)} className="px-2 py-1.5 hover:text-gold"><Minus size={12} /></button>
                       <span className="px-3 text-sm">{i.quantity}</span>
-                      <button onClick={() => updateQty(i.slug, i.size, i.quantity + 1)} className="px-2 py-1.5 hover:text-gold"><Plus size={12} /></button>
+                      <button aria-label="Increase quantity" onClick={() => updateQty(i.slug, i.size, i.quantity + 1)} className="px-2 py-1.5 hover:text-gold"><Plus size={12} /></button>
                     </div>
                     <div className="text-sm font-semibold text-gold">${i.price * i.quantity}</div>
                   </div>
