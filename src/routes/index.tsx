@@ -102,7 +102,7 @@ function Index() {
             <div key={f.t} style={{ animationDelay: `${i * 80}ms` }}
               className="rounded-xl border border-border bg-[var(--gradient-card)] p-6 hover:border-gold/50 hover:-translate-y-1 transition-all duration-500 animate-fade-up">
               <f.icon className="text-gold" size={28} />
-              <h3 className="mt-4 font-display text-xl">{f.t}</h3>
+              <h2 className="mt-4 font-display text-xl">{f.t}</h2>
               <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{f.d}</p>
             </div>
           ))}

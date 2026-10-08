@@ -14,7 +14,7 @@
  *  you have the actual code from Search Console — never guess one.
  * ─────────────────────────────────────────────────────────────
  */
-export const SITE_URL = "https://peptide-empire-hub.lovable.app";
+export const SITE_URL = "https://peptideempire.store";
 
 export const SITE_NAME = "Peptide Empire";
 

@@ -93,7 +93,7 @@ function WholesalePage() {
         ].map((s) => (
           <div key={s.t} className="rounded-xl border border-border bg-[var(--gradient-card)] p-5">
             <s.icon className="text-gold" size={22} />
-            <h3 className="mt-3 font-display text-lg">{s.t}</h3>
+            <h2 className="mt-3 font-display text-lg">{s.t}</h2>
             <p className="mt-1 text-xs text-muted-foreground">{s.d}</p>
           </div>
         ))}

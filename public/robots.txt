@@ -10,4 +10,4 @@ Disallow: /.mcp/
 Disallow: /.well-known/
 Disallow: /.lovable/
 
-Sitemap: https://peptide-empire-hub.lovable.app/sitemap.xml
+Sitemap: https://peptideempire.store/sitemap.xml
