@@ -18,7 +18,7 @@ export const SITE_URL = "https://peptideempire.store";
 
 export const SITE_NAME = "Peptide Empire";
 
-export const GSC_VERIFICATION = "Er3zYhmP8VSihclXKFuTCxeNoyzUN5CqvfwmT61sjpo";
+export const GSC_VERIFICATION = "yG-TzvMSM6RmlQ514-ycjl5h7hRQh4U2sYozesgIgNE";
 
 /** Absolute URL for a site-relative path. */
 export const abs = (path = "/") => `${SITE_URL}${path.startsWith("/") ? path : `/${path}`}`;
