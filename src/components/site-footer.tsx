@@ -20,6 +20,7 @@ export function SiteFooter() {
             <li><Link to="/products" className="hover:text-gold">Products</Link></li>
             <li><Link to="/documentation" className="hover:text-gold">Documentation &amp; Quality</Link></li>
             <li><Link to="/faq" className="hover:text-gold">FAQ</Link></li>
+            <li><Link to="/blog/what-are-research-peptides" className="hover:text-gold">What Are Research Peptides?</Link></li>
             <li><Link to="/wholesale" className="hover:text-gold">Wholesale</Link></li>
             <li><Link to="/about" className="hover:text-gold">About</Link></li>
             <li><Link to="/contact" className="hover:text-gold">Contact</Link></li>
