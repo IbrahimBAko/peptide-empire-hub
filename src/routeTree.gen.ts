@@ -21,8 +21,10 @@ import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as WholesaleRouteImport } from './routes/wholesale'
 import { Route as Char91DotmcpChar93ListToolsRouteImport } from './routes/[.mcp]/list-tools'
 import { Route as Char91DotwellKnownChar93OauthProtectedResourceRouteImport } from './routes/[.well-known]/oauth-protected-resource'
+import { Route as BlogHowToVerifyAPeptideSupplierRouteImport } from './routes/blog.how-to-verify-a-peptide-supplier'
 import { Route as BlogWhatAreResearchPeptidesRouteImport } from './routes/blog.what-are-research-peptides'
 import { Route as ProductsIndexRouteImport } from './routes/products.index'
+import { Route as ProductsSlugRouteImport } from './routes/products.$slug'
 import { Route as DotlovableOauthConsentRouteImport } from './routes/[.]lovable.oauth.consent'
 import { Route as Char91DotmcpChar93InvokeToolToolRouteImport } from './routes/[.mcp]/invoke-tool/$tool'
 
@@ -88,6 +90,12 @@ const Char91DotwellKnownChar93OauthProtectedResourceRoute =
     path: '/.well-known/oauth-protected-resource',
     getParentRoute: () => rootRouteImport,
   } as any)
+const BlogHowToVerifyAPeptideSupplierRoute =
+  BlogHowToVerifyAPeptideSupplierRouteImport.update({
+    id: '/blog/how-to-verify-a-peptide-supplier',
+    path: '/blog/how-to-verify-a-peptide-supplier',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const BlogWhatAreResearchPeptidesRoute =
   BlogWhatAreResearchPeptidesRouteImport.update({
     id: '/blog/what-are-research-peptides',
@@ -97,6 +105,11 @@ const BlogWhatAreResearchPeptidesRoute =
 const ProductsIndexRoute = ProductsIndexRouteImport.update({
   id: '/products/',
   path: '/products/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProductsSlugRoute = ProductsSlugRouteImport.update({
+  id: '/products/$slug',
+  path: '/products/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DotlovableOauthConsentRoute = DotlovableOauthConsentRouteImport.update({
@@ -124,7 +137,9 @@ export interface FileRoutesByFullPath {
   '/wholesale': typeof WholesaleRoute
   '/.mcp/list-tools': typeof Char91DotmcpChar93ListToolsRoute
   '/.well-known/oauth-protected-resource': typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
+  '/blog/how-to-verify-a-peptide-supplier': typeof BlogHowToVerifyAPeptideSupplierRoute
   '/blog/what-are-research-peptides': typeof BlogWhatAreResearchPeptidesRoute
+  '/products/$slug': typeof ProductsSlugRoute
   '/products/': typeof ProductsIndexRoute
   '/.lovable/oauth/consent': typeof DotlovableOauthConsentRoute
   '/.mcp/invoke-tool/$tool': typeof Char91DotmcpChar93InvokeToolToolRoute
@@ -142,7 +157,9 @@ export interface FileRoutesByTo {
   '/wholesale': typeof WholesaleRoute
   '/.mcp/list-tools': typeof Char91DotmcpChar93ListToolsRoute
   '/.well-known/oauth-protected-resource': typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
+  '/blog/how-to-verify-a-peptide-supplier': typeof BlogHowToVerifyAPeptideSupplierRoute
   '/blog/what-are-research-peptides': typeof BlogWhatAreResearchPeptidesRoute
+  '/products/$slug': typeof ProductsSlugRoute
   '/products': typeof ProductsIndexRoute
   '/.lovable/oauth/consent': typeof DotlovableOauthConsentRoute
   '/.mcp/invoke-tool/$tool': typeof Char91DotmcpChar93InvokeToolToolRoute
@@ -161,7 +178,9 @@ export interface FileRoutesById {
   '/wholesale': typeof WholesaleRoute
   '/.mcp/list-tools': typeof Char91DotmcpChar93ListToolsRoute
   '/.well-known/oauth-protected-resource': typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
+  '/blog/how-to-verify-a-peptide-supplier': typeof BlogHowToVerifyAPeptideSupplierRoute
   '/blog/what-are-research-peptides': typeof BlogWhatAreResearchPeptidesRoute
+  '/products/$slug': typeof ProductsSlugRoute
   '/products/': typeof ProductsIndexRoute
   '/.lovable/oauth/consent': typeof DotlovableOauthConsentRoute
   '/.mcp/invoke-tool/$tool': typeof Char91DotmcpChar93InvokeToolToolRoute
@@ -181,7 +200,9 @@ export interface FileRouteTypes {
     | '/wholesale'
     | '/.mcp/list-tools'
     | '/.well-known/oauth-protected-resource'
+    | '/blog/how-to-verify-a-peptide-supplier'
     | '/blog/what-are-research-peptides'
+    | '/products/$slug'
     | '/products/'
     | '/.lovable/oauth/consent'
     | '/.mcp/invoke-tool/$tool'
@@ -199,7 +220,9 @@ export interface FileRouteTypes {
     | '/wholesale'
     | '/.mcp/list-tools'
     | '/.well-known/oauth-protected-resource'
+    | '/blog/how-to-verify-a-peptide-supplier'
     | '/blog/what-are-research-peptides'
+    | '/products/$slug'
     | '/products'
     | '/.lovable/oauth/consent'
     | '/.mcp/invoke-tool/$tool'
@@ -217,7 +240,9 @@ export interface FileRouteTypes {
     | '/wholesale'
     | '/.mcp/list-tools'
     | '/.well-known/oauth-protected-resource'
+    | '/blog/how-to-verify-a-peptide-supplier'
     | '/blog/what-are-research-peptides'
+    | '/products/$slug'
     | '/products/'
     | '/.lovable/oauth/consent'
     | '/.mcp/invoke-tool/$tool'
@@ -236,7 +261,9 @@ export interface RootRouteChildren {
   WholesaleRoute: typeof WholesaleRoute
   Char91DotmcpChar93ListToolsRoute: typeof Char91DotmcpChar93ListToolsRoute
   Char91DotwellKnownChar93OauthProtectedResourceRoute: typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
+  BlogHowToVerifyAPeptideSupplierRoute: typeof BlogHowToVerifyAPeptideSupplierRoute
   BlogWhatAreResearchPeptidesRoute: typeof BlogWhatAreResearchPeptidesRoute
+  ProductsSlugRoute: typeof ProductsSlugRoute
   ProductsIndexRoute: typeof ProductsIndexRoute
   DotlovableOauthConsentRoute: typeof DotlovableOauthConsentRoute
   Char91DotmcpChar93InvokeToolToolRoute: typeof Char91DotmcpChar93InvokeToolToolRoute
@@ -328,6 +355,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof Char91DotwellKnownChar93OauthProtectedResourceRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog/how-to-verify-a-peptide-supplier': {
+      id: '/blog/how-to-verify-a-peptide-supplier'
+      path: '/blog/how-to-verify-a-peptide-supplier'
+      fullPath: '/blog/how-to-verify-a-peptide-supplier'
+      preLoaderRoute: typeof BlogHowToVerifyAPeptideSupplierRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/blog/what-are-research-peptides': {
       id: '/blog/what-are-research-peptides'
       path: '/blog/what-are-research-peptides'
@@ -340,6 +374,13 @@ declare module '@tanstack/react-router' {
       path: '/products'
       fullPath: '/products/'
       preLoaderRoute: typeof ProductsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/products/$slug': {
+      id: '/products/$slug'
+      path: '/products/$slug'
+      fullPath: '/products/$slug'
+      preLoaderRoute: typeof ProductsSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/.lovable/oauth/consent': {
@@ -373,7 +414,9 @@ const rootRouteChildren: RootRouteChildren = {
   Char91DotmcpChar93ListToolsRoute: Char91DotmcpChar93ListToolsRoute,
   Char91DotwellKnownChar93OauthProtectedResourceRoute:
     Char91DotwellKnownChar93OauthProtectedResourceRoute,
+  BlogHowToVerifyAPeptideSupplierRoute: BlogHowToVerifyAPeptideSupplierRoute,
   BlogWhatAreResearchPeptidesRoute: BlogWhatAreResearchPeptidesRoute,
+  ProductsSlugRoute: ProductsSlugRoute,
   ProductsIndexRoute: ProductsIndexRoute,
   DotlovableOauthConsentRoute: DotlovableOauthConsentRoute,
   Char91DotmcpChar93InvokeToolToolRoute: Char91DotmcpChar93InvokeToolToolRoute,
