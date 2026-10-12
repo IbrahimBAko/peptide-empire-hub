@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { products, type Product } from "@/lib/products";
 import { ContactButtons } from "@/components/contact-buttons";
@@ -177,7 +177,7 @@ function ProductsPage() {
               </div>
 
               <div className="flex flex-1 flex-col p-6">
-                <h2 className="font-display text-2xl">{p.name}</h2>
+                <h2 className="font-display text-2xl"><Link to="/products/$slug" params={{ slug: p.slug }} onClick={(e) => e.stopPropagation()} className="hover:text-gold">{p.name}</Link></h2>
                 <p className="mt-1 text-sm text-gold">{p.tagline}</p>
                 <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{p.description}</p>
 
@@ -223,12 +223,14 @@ function ProductsPage() {
                     size="sm"
                     message={`Hello, I'd like to request institutional pricing and lead times for ${p.name}.`}
                   />
-                  <button
-                    onClick={(e) => { e.stopPropagation(); setActive(p); }}
-                    className="mt-3 w-full text-[11px] uppercase tracking-widest text-gold hover:text-gold-bright transition"
+                  <Link
+                    to="/products/$slug"
+                    params={{ slug: p.slug }}
+                    onClick={(e) => e.stopPropagation()}
+                    className="mt-3 block w-full text-center text-[11px] uppercase tracking-widest text-gold hover:text-gold-bright transition"
                   >
                     View Full Details →
-                  </button>
+                  </Link>
                 </div>
               </div>
             </article>

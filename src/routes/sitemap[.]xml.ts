@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import type {} from "@tanstack/react-start";
 import { SITE_URL } from "@/lib/site";
+import { products } from "@/lib/products";
 
 interface SitemapEntry {
   path: string;
@@ -16,6 +17,8 @@ const entries: SitemapEntry[] = [
   { path: "/wholesale", changefreq: "monthly", priority: "0.7" },
   { path: "/faq", changefreq: "monthly", priority: "0.6" },
   { path: "/blog/what-are-research-peptides", changefreq: "monthly", priority: "0.6" },
+  { path: "/blog/how-to-verify-a-peptide-supplier", changefreq: "monthly", priority: "0.6" },
+  ...products.map((p) => ({ path: `/products/${p.slug}`, changefreq: "weekly" as const, priority: "0.8" })),
   { path: "/about", changefreq: "yearly", priority: "0.5" },
   { path: "/contact", changefreq: "yearly", priority: "0.5" },
 ];
