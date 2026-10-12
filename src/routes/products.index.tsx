@@ -8,7 +8,7 @@ import { ProductDetailModal } from "@/components/product-detail-modal";
 import { Check, Search, FlaskConical } from "lucide-react";
 import { seoMeta, canonical, breadcrumbLd, abs } from "@/lib/site";
 
-export const Route = createFileRoute("/products")({
+export const Route = createFileRoute("/products/")({
   head: () => ({
     meta: seoMeta({
       title: "Research Catalog — Peptide Empire",
@@ -41,7 +41,7 @@ export const Route = createFileRoute("/products")({
               item: {
                 "@type": "Product",
                 name: p.name,
-                url: `${abs("/products")}#${p.slug}`,
+                url: abs(`/products/${p.slug}`),
                 ...(p.image ? { image: abs(String(p.image)) } : {}),
                 ...(p.description ? { description: p.description } : {}),
                 brand: { "@type": "Brand", name: "Peptide Empire" },
