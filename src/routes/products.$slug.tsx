@@ -75,7 +75,8 @@ export const Route = createFileRoute("/products/$slug")({
 
 function ProductPage() {
   const { slug } = Route.useLoaderData();
-  const p = products.find((x) => x.slug === slug)!;
+  const p = products.find((x) => x.slug === slug);
+  if (!p) throw notFound();
   const related = products.filter((x) => x.category === p.category && x.slug !== p.slug).slice(0, 3);
   return (
     <div className="mx-auto max-w-6xl px-6 py-16">

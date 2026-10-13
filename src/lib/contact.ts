@@ -1,7 +1,7 @@
 export const CONTACT = {
-  whatsapp: "15415159726",
+  whatsapp: "19454370006",
   email: "peptideempire4@gmail.com",
-  phoneDisplay: "+1 (541) 515-9726",
+  phoneDisplay: "+1 (945) 437-0006",
 };
 
 export function waLink(message = "Hello Peptide Empire,\n\nI would like to place an order. Please assist me with pricing and delivery details.\n\nThank you.") {
