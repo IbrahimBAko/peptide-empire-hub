@@ -15,6 +15,7 @@ export const Route = createFileRoute("/cart")({
       { property: "og:title", content: "Your Cart — Peptide Empire" },
       { property: "og:description", content: "Review your selection and send a private order inquiry to Peptide Empire." },
       { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
       { property: "og:url", content: "https://peptideempire.store/cart" },
       noindex,
     ],

@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { CONTACT, mailLink, waLink } from "@/lib/contact";
 import { Mail, MessageCircle, Clock, ShieldCheck, FileCheck2, MapPin } from "lucide-react";
 import { Link } from "@tanstack/react-router";
-import { seoMeta, canonical } from "@/lib/site";
+import { seoMeta, canonical, SITE_URL } from "@/lib/site";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -20,7 +20,7 @@ export const Route = createFileRoute("/contact")({
           "@context": "https://schema.org",
           "@type": "ContactPage",
           name: "Contact Peptide Empire",
-          url: "https://peptide-empire-hub.lovable.app/contact",
+          url: `${SITE_URL}/contact`,
         }),
       },
     ],
