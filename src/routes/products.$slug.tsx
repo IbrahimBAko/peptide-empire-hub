@@ -17,10 +17,13 @@ export const Route = createFileRoute("/products/$slug")({
     if (!p) return { meta: [{ title: "Product not found — Peptide Empire" }] };
     const path = `/products/${p.slug}`;
     const prices = (p.variants ?? []).map((v) => v.price).filter((n) => n > 0);
+    const override = productSeoOverrides[p.slug];
     return {
       meta: seoMeta({
-        title: `${p.name} Research Peptide — ${p.purity} Purity | Peptide Empire`,
-        description: `${p.name} for laboratory research: ${p.tagline}. ${p.purity} purity${p.coa ? ", Certificate of Analysis published" : ""}, pack sizes and pricing. Research use only.`.slice(0, 300),
+        title: override?.title ?? `${p.name} Research Peptide — ${p.purity} Purity | Peptide Empire`,
+        description:
+          override?.description ??
+          `${p.name} for laboratory research: ${p.tagline}. ${p.purity} purity${p.coa ? ", Certificate of Analysis published" : ""}, pack sizes and pricing. Research use only.`.slice(0, 300),
         path,
         type: "website",
       }),
