@@ -7,3 +7,4 @@
 - [x] Replace the six displayed reviewer photos with the six supplied photos after confirming identity/permission and mapping.
 - [x] Add a validated client review submission form with a safe publishing workflow.
 - [x] Verify the review experience on desktop and mobile without changing unrelated pages or features.
+- [x] Publish the site so the new "Buy [compound]" product page titles go live.
