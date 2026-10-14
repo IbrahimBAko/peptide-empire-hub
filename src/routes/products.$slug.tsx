@@ -6,6 +6,26 @@ import { AddToCart } from "@/components/add-to-cart";
 import { ContactButtons } from "@/components/contact-buttons";
 import { seoMeta, canonical, breadcrumbLd, abs } from "@/lib/site";
 
+// Search-optimized titles/descriptions for high-demand, low-difficulty
+// "buy <compound>" queries (Semrush US data, Oct 2026).
+const productSeoOverrides: Record<string, { title: string; description: string }> = {
+  retatrutide: {
+    title: "Buy Retatrutide — ≥99% Purity Research Peptide | Peptide Empire",
+    description:
+      "Buy retatrutide research peptide online: ≥99.0% purity, published Certificate of Analysis, multiple pack sizes with clear pricing. Lab-verified, research use only.",
+  },
+  "bpc-157": {
+    title: "Buy BPC-157 — Lab-Tested Research Peptide | Peptide Empire",
+    description:
+      "Buy BPC-157 (Body Protection Compound) research peptide: 2 mg, 5 mg and 10 mg vials, purity-tested with Certificate of Analysis available. Research use only.",
+  },
+  "tb-500": {
+    title: "Buy TB-500 — Thymosin Beta-4 Research Peptide | Peptide Empire",
+    description:
+      "Buy TB-500 (Thymosin Beta-4 fragment) research peptide: 2 mg, 5 mg and 10 mg vials, purity-tested with Certificate of Analysis available. Research use only.",
+  },
+};
+
 export const Route = createFileRoute("/products/$slug")({
   loader: ({ params }) => {
     const product = products.find((p) => p.slug === params.slug);
@@ -17,10 +37,13 @@ export const Route = createFileRoute("/products/$slug")({
     if (!p) return { meta: [{ title: "Product not found — Peptide Empire" }] };
     const path = `/products/${p.slug}`;
     const prices = (p.variants ?? []).map((v) => v.price).filter((n) => n > 0);
+    const override = productSeoOverrides[p.slug];
     return {
       meta: seoMeta({
-        title: `${p.name} Research Peptide — ${p.purity} Purity | Peptide Empire`,
-        description: `${p.name} for laboratory research: ${p.tagline}. ${p.purity} purity${p.coa ? ", Certificate of Analysis published" : ""}, pack sizes and pricing. Research use only.`.slice(0, 300),
+        title: override?.title ?? `${p.name} Research Peptide — ${p.purity} Purity | Peptide Empire`,
+        description:
+          override?.description ??
+          `${p.name} for laboratory research: ${p.tagline}. ${p.purity} purity${p.coa ? ", Certificate of Analysis published" : ""}, pack sizes and pricing. Research use only.`.slice(0, 300),
         path,
         type: "website",
       }),
