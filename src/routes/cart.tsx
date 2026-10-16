@@ -6,6 +6,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import { CheckCircle2 } from "lucide-react";
 import { ShoppingCart, Trash2, Minus, Plus, MessageCircle, Mail, ShieldCheck, ArrowLeft } from "lucide-react";
 import { noindex } from "@/lib/site";
+import { calculatePromo, promoSummary } from "@/lib/promo";
 
 export const Route = createFileRoute("/cart")({
   head: () => ({
@@ -31,6 +32,8 @@ function CartPage() {
   const [copied, setCopied] = useState(false);
   const [sent, setSent] = useState(false);
   const [channel, setChannel] = useState<Channel>("whatsapp");
+  const [promoCode, setPromoCode] = useState("");
+  const promo = calculatePromo(subtotal, promoCode);
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -62,7 +65,7 @@ function CartPage() {
       "",
       ...items.map((i, idx) => `${idx + 1}. ${i.name} — ${i.size} × ${i.quantity}  ($${i.price * i.quantity})`),
       "",
-      `Estimated subtotal: $${subtotal}`,
+      ...promoSummary(subtotal, promoCode),
       "",
       "Please assist me with pricing and delivery details.",
       "",
@@ -185,12 +188,31 @@ function CartPage() {
         <aside className="rounded-xl border border-gold/30 bg-[var(--gradient-card)] p-6 h-fit shadow-[var(--shadow-luxury)]">
           <h3 className="font-display text-xl">Order Summary</h3>
           <div className="mt-4 space-y-2 text-sm">
-            <Row label={`Items (${count})`} value={`$${subtotal}`} />
+            <Row label={`Items (${count})`} value={`$${subtotal.toFixed(2)}`} />
+            {promo.code && <Row label="Promo discount (4%)" value={`−$${promo.discount.toFixed(2)}`} />}
             <Row label="Shipping" value="Quoted on confirmation" />
+          </div>
+          <div className="mt-4">
+            <label htmlFor="promo-code" className="text-[10px] uppercase tracking-widest text-muted-foreground">Promo code</label>
+            <input
+              id="promo-code"
+              type="text"
+              value={promoCode}
+              onChange={(event) => setPromoCode(event.target.value)}
+              maxLength={80}
+              autoComplete="off"
+              placeholder="e.g. EMILY1"
+              aria-invalid={Boolean(promo.error)}
+              aria-describedby="promo-status"
+              className="mt-1 w-full rounded-md border border-border bg-card px-3 py-2 text-sm focus:border-gold focus:outline-none"
+            />
+            <p id="promo-status" aria-live="polite" className={`mt-2 text-xs ${promo.error ? "text-destructive" : "text-gold"}`}>
+              {promo.error || (promo.code ? `4% discount applied · You save $${promo.discount.toFixed(2)}` : "")}
+            </p>
           </div>
           <div className="mt-4 pt-4 border-t border-border flex items-center justify-between">
             <span className="text-sm uppercase tracking-widest text-muted-foreground">Estimated</span>
-            <span className="font-display text-2xl text-gradient-gold">${subtotal}</span>
+            <span className="font-display text-2xl text-gradient-gold">${promo.total.toFixed(2)}</span>
           </div>
 
           {step === 1 ? (
