@@ -193,7 +193,7 @@ function CartPage() {
             <Row label="Shipping" value="Quoted on confirmation" />
           </div>
           <div className="mt-4">
-            <label htmlFor="promo-code" className="text-[10px] uppercase tracking-widest text-muted-foreground">Promo code</label>
+            <label htmlFor="promo-code" className="text-[10px] uppercase tracking-widest text-muted-foreground">Promo code (optional)</label>
             <input
               id="promo-code"
               type="text"
@@ -201,7 +201,7 @@ function CartPage() {
               onChange={(event) => setPromoCode(event.target.value)}
               maxLength={80}
               autoComplete="off"
-              placeholder="e.g. EMILY1"
+              placeholder="e.g. WELCOME4"
               aria-invalid={Boolean(promo.error)}
               aria-describedby="promo-status"
               className="mt-1 w-full rounded-md border border-border bg-card px-3 py-2 text-sm focus:border-gold focus:outline-none"
