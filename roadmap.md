@@ -1,4 +1,5 @@
 # Roadmap
+- [x] Add and verify the promo code discount in the cart and both inquiry channels.
 
 - [x] Update the WhatsApp number to +1 (945) 437-0006 everywhere.
 - [x] Verify product pages, cart ordering links, supplier guide, and SEO metadata.
