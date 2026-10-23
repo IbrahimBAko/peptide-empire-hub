@@ -1,5 +1,5 @@
 # Roadmap
-- [ ] Prepare first laboratory-research ad campaign for USA, UK, Australia, and Canada; confirm product eligibility before account setup or spending.
+- [ ] Prepare first laboratory-research ad campaign for USA, UK, Australia, and Canada; blocked pending product/market regulatory and platform eligibility confirmation.
 - [x] Add and verify the promo code discount in the cart and both inquiry channels.
 
 - [x] Update the WhatsApp number to +1 (945) 437-0006 everywhere.
