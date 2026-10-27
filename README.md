@@ -1,72 +1,81 @@
-# Peptide Empire Hub
+Peptide Empire Hub
 
-Build a modern professional peptide company website called “Peptide Empire”.
+A modern, responsive web application for Peptide Empire, featuring a premium product catalogue, company information, and direct customer inquiry options.
 
-The company sells premium research peptides.
+Project Overview
 
-Features needed:
+Peptide Empire Hub is a website project designed to provide visitors with an organized way to explore the company's research peptide catalogue and contact the business for product inquiries.
 
-Homepage with hero section
+The interface emphasizes modern design, responsive layouts, intuitive navigation, and a streamlined browsing experience.
 
-About Us page
+Features
 
-Products page with peptide product cards
+- Homepage: Brand introduction and featured content.
+- Product Catalogue: Dedicated product cards and product information.
+- About Us: Company overview and brand information.
+- Contact Options: Direct communication through supported contact channels.
+- Responsive Design: Layouts optimized for mobile devices, tablets, and desktop screens.
+- Performance: Structured frontend designed for efficient loading.
+- SEO: Search engine metadata and page structure, where configured.
 
-Contact page
+Product Catalogue
 
-WhatsApp direct contact button
+The website features the following product categories:
 
-Telegram direct contact button
+- Retatrutide
+- Tirzepatide
+- Semaglutide
+- GHK-Cu
+- Glow Blend
+- MOTS-C
 
-Gmail contact option
+Product availability and details should be confirmed directly with the business. Products presented for research purposes are not represented as approved treatments for human use.
 
-Mobile responsive design
+Technology and Architecture
 
-Professional premium UI
+The project uses a modern web development workflow. Consult the source files and "package.json" for the exact framework, dependencies, and development tools.
 
-Fast loading
+Getting Started
 
-SEO optimized
+Prerequisites
 
-Clean medical/luxury style design
+- Node.js
+- npm
 
-Products should include:
+Installation
 
-Retatrutide
+Clone the repository:
 
-Tirzepatide
-
-Semaglutide
-
-GHK-Cu
-
-Glow Blend
-
-MOTS-C
-
-Each product should have an “Order Now” button that redirects customers to WhatsApp, Telegram, or Gmail for direct communication with the seller.
-
-Use a premium modern design with trust-building layout.
-
-This project was built with [Lovable](https://lovable.dev).
-
-**Live app**: https://peptide-empire-hub.lovable.app
-
-## Build with Lovable
-
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/66de4965-350c-42e5-aa18-f97e4138d833).
-
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
-
-## Development
-
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
-
-```sh
 git clone <this-repository-url>
 cd <repository-name>
 npm i
 npm run dev
-```
+
+Install dependencies:
+
+npm install
+
+Start the local development server:
+
+npm run dev
+
+Follow the local URL printed in the terminal to view the application.
+
+Environment Configuration
+
+If the application uses environment variables or external services, configure the required values in a local ".env" file. Never commit private API keys, passwords, or service-role secrets to the repository.
+
+Live Website
+
+https://peptideempire.store 
+
+Project Goals
+
+This project explores responsive interface development, product catalogue presentation, customer communication workflows, frontend architecture, and website optimization.
+
+Developer
+
+Ibrahim Bako Kasum
+
+- GitHub: https://github.com/IbrahimBAko
+- LinkedIn: https://www.linkedin.com/in/ibrahim-bako-144704337/
